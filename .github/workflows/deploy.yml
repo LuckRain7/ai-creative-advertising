@@ -28,11 +28,11 @@ jobs:
         run: npm run build
 
       - name: Create CNAME
-        run: echo 'ai-creative-advertising.ilabubu.com' > ./dist/CNAME
+        run: echo 'ai-creative-advertising.ilabubu.com' > ./docs/.vitepress/dist/CNAME
 
       - name: Deploy to pages branch
         uses: peaceiris/actions-gh-pages@v4
         with:
           github_token: ${{ secrets.GITHUB_TOKEN }}
-          publish_dir: ./dist
+          publish_dir: ./docs/.vitepress/dist
           publish_branch: pages
