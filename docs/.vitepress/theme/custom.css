@@ -1,0 +1,63 @@
+/**
+ * 主题定制：暖橙主色，贴合「创意 / 广告」的调性。
+ * VitePress 默认主题的深浅色由 .dark 类切换，下面两组变量分别覆盖。
+ */
+
+:root {
+  --vp-c-brand-1: #d9480f;
+  --vp-c-brand-2: #e8590c;
+  --vp-c-brand-3: #f76707;
+  --vp-c-brand-soft: rgba(247, 103, 7, 0.14);
+
+  /* 首页大标题的渐变 */
+  --vp-home-hero-name-color: transparent;
+  --vp-home-hero-name-background: linear-gradient(120deg, #f76707 30%, #f59f00);
+  --vp-home-hero-image-background-image: linear-gradient(
+    -45deg,
+    #f76707 50%,
+    #f59f00 50%
+  );
+  --vp-home-hero-image-filter: blur(56px);
+}
+
+.dark {
+  /* 深色背景下需要提高亮度，否则橙色发闷、对比度不足 */
+  --vp-c-brand-1: #ffa94d;
+  --vp-c-brand-2: #ff922b;
+  --vp-c-brand-3: #f76707;
+  --vp-c-brand-soft: rgba(255, 146, 43, 0.16);
+}
+
+/* ---- 表格：工具对照表列多，需要横向滚动而不是撑破页面 ---- */
+.vp-doc div[class*='language-'] {
+  overflow-x: auto;
+}
+
+.vp-doc table {
+  display: table;
+  width: 100%;
+}
+
+.vp-doc .table-wrapper {
+  overflow-x: auto;
+}
+
+/* ---- Prompt 卡片：正文里成段的可复制 Prompt 用引用块承载，加个视觉锚点 ---- */
+.vp-doc blockquote {
+  border-left-color: var(--vp-c-brand-2);
+}
+
+/* ---- 首页特性卡片悬停反馈 ---- */
+.VPFeature {
+  transition: border-color 0.2s, transform 0.2s;
+}
+
+.VPFeature:hover {
+  border-color: var(--vp-c-brand-2);
+  transform: translateY(-2px);
+}
+
+/* ---- 「待补充」占位页顶部的提示条 ---- */
+.vp-doc .custom-block.tip {
+  border-color: var(--vp-c-brand-2);
+}

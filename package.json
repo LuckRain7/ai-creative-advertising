@@ -1,0 +1,19 @@
+{
+  "name": "ai-creative-advertising",
+  "version": "1.0.0",
+  "description": "AI 创意广告知识库 —— 借助 AI 生成创意广告的方法论、Prompt、工具与案例",
+  "private": true,
+  "type": "module",
+  "license": "MIT",
+  "scripts": {
+    "dev": "vitepress dev docs",
+    "build": "vitepress build docs",
+    "preview": "vitepress preview docs",
+    "docs:dev": "vitepress dev docs",
+    "docs:build": "vitepress build docs",
+    "docs:preview": "vitepress preview docs"
+  },
+  "devDependencies": {
+    "vitepress": "^1.6.4"
+  }
+}
