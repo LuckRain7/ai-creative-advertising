@@ -38,6 +38,7 @@ export default defineConfig({
       { text: '方法论', link: '/method/', activeMatch: '/method/' },
       { text: 'Prompt 库', link: '/prompts/', activeMatch: '/prompts/' },
       { text: '工具地图', link: '/tools/', activeMatch: '/tools/' },
+      { text: '实战流水线', link: '/pipelines/', activeMatch: '/pipelines/' },
       { text: '案例拆解', link: '/cases/', activeMatch: '/cases/' },
       { text: '写作模板', link: '/templates/', activeMatch: '/templates/' },
     ],
@@ -59,6 +60,7 @@ export default defineConfig({
           items: [
             { text: '板块总览', link: '/method/' },
             { text: '从 brief 到成片：完整链路 SOP', link: '/method/workflow-sop' },
+            { text: '片型图谱：这支片子该长什么样', link: '/method/ad-formats' },
             { text: 'Big Idea 与洞察：AI 的能力边界', link: '/method/big-idea' },
             { text: '分镜设计：镜头语言翻译表', link: '/method/storyboard' },
           ],
@@ -107,6 +109,15 @@ export default defineConfig({
           items: [{ text: '单工具深度评测', link: '/tools/reviews' }],
         },
       ],
+      '/pipelines/': [
+        {
+          text: '实战流水线',
+          items: [
+            { text: '板块总览', link: '/pipelines/' },
+            { text: 'Codex + Gemini Flow', link: '/pipelines/codex-gemini' },
+          ],
+        },
+      ],
       '/cases/': [
         {
           text: '案例拆解',
@@ -117,6 +128,11 @@ export default defineConfig({
             { text: '案例 02 · 电商主图批量生产', link: '/cases/case-02-ecommerce-visual' },
             { text: '案例 03 · 快餐薯条社媒短视频', link: '/cases/case-03-fries-social' },
             { text: '案例 04 · VF 工艺薯条脆', link: '/cases/case-04-vf-fries-crisp' },
+            { text: '案例 04 附 · 片型可行性分析', link: '/cases/case-04-fries-crisp-formats' },
+            { text: '案例 05 · 乐事薯片 AI 短片（逆向拆解）', link: '/cases/case-05-lays-ai-video' },
+            { text: '案例 06 · Kalshi NBA 决赛 AI 广告（逆向拆解）', link: '/cases/case-06-kalshi-veo' },
+            { text: '案例 07 · 元气森林 × 分众众小智（逆向拆解）', link: '/cases/case-07-yuanqi-fenzhong' },
+            { text: '案例 08 · 蜜雪冰城 × 可灵雪王特效（逆向拆解）', link: '/cases/case-08-mixue-kling' },
           ],
         },
       ],

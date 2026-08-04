@@ -7,6 +7,7 @@
 | 文章 | 解决的问题 |
 |---|---|
 | [从 brief 到成片：完整链路 SOP](/method/workflow-sop) | 六个阶段各干什么，哪步交给 AI，哪步必须人来定 |
+| [片型图谱：这支片子该长什么样](/method/ad-formats) | 十一种片型怎么排除、怎么选，AI 让性价比排序变了 |
 | [Big Idea 与洞察：AI 的能力边界](/method/big-idea) | AI 帮你想创意，到底能帮到哪一步 |
 | [分镜设计：镜头语言翻译表](/method/storyboard) | 把「我想要有质感」翻译成模型听得懂的话 |
 

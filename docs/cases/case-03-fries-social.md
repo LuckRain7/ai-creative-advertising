@@ -259,6 +259,7 @@
 ## 接着看
 
 - **同为薯条、但卖工艺不卖感官** → [案例 04 · VF 工艺薯条脆](/cases/case-04-vf-fries-crisp)（建议紧接着读，两篇是一组对照）
+- 为什么这套食欲感拍法不能直接套到袋装薯条脆上 → [片型可行性分析](/cases/case-04-fries-crisp-formats)
 - 视频链路的基本走法 → [案例 01 · 饮料品牌短 TVC](/cases/case-01-beverage-tvc)
 - 静态图批量生产 → [案例 02 · 电商主图批量生产](/cases/case-02-ecommerce-visual)
 - 分镜方法 → [分镜设计](/method/storyboard)

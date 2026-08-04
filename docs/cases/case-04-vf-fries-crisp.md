@@ -619,6 +619,7 @@ Audio: crisp dry clatter of the pieces landing against each other, light and lay
 
 ## 接着看
 
+- **动手之前那一步：这个产品该拍什么类型的片子** → [片型可行性分析](/cases/case-04-fries-crisp-formats)
 - 同为薯条、但卖感官不卖工艺 → [案例 03 · 快餐薯条社媒短视频](/cases/case-03-fries-social)
 - 包装/产品必须精确时的链路选择 → [选型决策树](/tools/decision-tree)
 - 文案的合规检查方法 → [广告文案与口播](/prompts/copywriting#一个通用技巧-让-ai-当批评者)

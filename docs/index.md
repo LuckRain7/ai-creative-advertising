@@ -26,6 +26,10 @@ features:
     details: 文案 / 图像 / 视频 / 配音 / 剪辑五类工具的定位对照，以及按预算选型的决策树。
     link: /tools/
     linkText: 进入板块
+  - title: 实战流水线
+    details: 具体工具组合起来实际怎么跑 —— 目录结构、命名规范、哪一步能自动化、哪一步不能。
+    link: /pipelines/
+    linkText: 进入板块
   - title: 案例拆解
     details: 统一的拆解格式：创意点 → 生成链路 → 关键 Prompt → 可复用套路。
     link: /cases/
