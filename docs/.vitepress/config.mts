@@ -23,6 +23,7 @@ export default defineConfig({
   cleanUrls: true,
 
   head: [
+    ['link', { rel: 'icon', type: 'image/svg+xml', href: '/favicon.svg' }],
     ['meta', { name: 'theme-color', content: '#e8590c' }],
     ['meta', { property: 'og:type', content: 'website' }],
     ['meta', { property: 'og:title', content: 'AI 创意广告知识库' }],
@@ -36,7 +37,7 @@ export default defineConfig({
   ],
 
   themeConfig: {
-    logo: undefined,
+    logo: '/logo.svg',
     outline: { level: [2, 3], label: '本页目录' },
 
     nav: [
