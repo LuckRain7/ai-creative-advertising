@@ -6,8 +6,3 @@ docs/.vitepress/cache/
 
 # 原始物料备份，不入库
 images/
-
-# 作战区：真实客户项目的进行中工作区。
-# 含未上市产品信息、客户物料与未确认授权的素材，不进版本控制、不进构建产物。
-docs/lab/
-docs/.vitepress/lab.local.json

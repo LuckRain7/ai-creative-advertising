@@ -1,24 +1,14 @@
 import { defineConfig } from 'vitepress'
-import { existsSync, readFileSync } from 'node:fs'
-import { dirname, resolve } from 'node:path'
-import { fileURLToPath } from 'node:url'
 
 // ⚠️ 唯一需要跟着 GitHub 仓库名改的一行。
 // 仓库叫 ai-creative-advertising  →  '/ai-creative-advertising/'
 // 部署为个人主站 <用户名>.github.io →  '/'
 const BASE = '/'
 
-// 判断 argv 而非 NODE_ENV：vitepress preview 跑的是构建产物，行为必须与 build 一致。
-const isDev = process.argv.includes('dev')
-
-// 作战区（lab）：真实客户项目的进行中工作区。
-// 三层隔离 —— dev 可见 / build 排除 / 不进版本控制。
-// 导航与侧边栏配置放在 lab.local.json（已在 .gitignore 中），
-// 因为其中包含客户名与项目名，不能出现在仓库源码里。
-// 文件不存在时静默跳过，clone 下来的仓库可正常构建。
-const LAB_CONFIG = resolve(dirname(fileURLToPath(import.meta.url)), 'lab.local.json')
-const lab: { nav?: any[]; sidebar?: Record<string, any> } =
-  isDev && existsSync(LAB_CONFIG) ? JSON.parse(readFileSync(LAB_CONFIG, 'utf-8')) : {}
+// 作战区（lab）：真实客户项目的进行中工作区，**公开**。
+// 2026-08-06 决定完全公开：进版本控制、进构建产物、进导航。
+// 隔离机制与本次变更的经过见 specs/2026-08-05-lab-module-design.md 的决策变更记录。
+// 写入前的自我审查标准见 docs/lab/index.md 顶部——公开意味着写进去就撤不回。
 
 export default defineConfig({
   base: BASE,
@@ -29,8 +19,6 @@ export default defineConfig({
   // 死链会让构建直接失败，避免线上出现 404
   ignoreDeadLinks: false,
 
-  // 非 dev 一律排除作战区，构建产物中不出现任何客户内容
-  srcExclude: isDev ? [] : ['lab/**'],
   lastUpdated: true,
   cleanUrls: true,
 
@@ -58,12 +46,33 @@ export default defineConfig({
       { text: '工具地图', link: '/tools/', activeMatch: '/tools/' },
       { text: '实战流水线', link: '/pipelines/', activeMatch: '/pipelines/' },
       { text: '案例拆解', link: '/cases/', activeMatch: '/cases/' },
-      ...(lab.nav ?? []),
+      { text: '作战区', link: '/lab/', activeMatch: '/lab/' },
       { text: '写作模板', link: '/templates/', activeMatch: '/templates/' },
     ],
 
     sidebar: {
-      ...(lab.sidebar ?? {}),
+      '/lab/': [
+        {
+          text: '作战区',
+          items: [{ text: '项目看板', link: '/lab/' }],
+        },
+        {
+          text: '双宇食品 · 薯条脆',
+          items: [
+            { text: '项目首页', link: '/lab/shuangyu-fries/' },
+            { text: '00 · Brief 与解读', link: '/lab/shuangyu-fries/00-brief' },
+            { text: '01 · 提案', link: '/lab/shuangyu-fries/01-proposal' },
+            {
+              text: '01a · 目标人群与竞品',
+              link: '/lab/shuangyu-fries/01a-audience-competitors',
+            },
+            { text: '02 · 物料清单', link: '/lab/shuangyu-fries/02-materials' },
+            { text: '03 · 分镜', link: '/lab/shuangyu-fries/03-storyboard' },
+            { text: '04 · Prompt 组', link: '/lab/shuangyu-fries/04-prompts' },
+            { text: '05 · 生成日志', link: '/lab/shuangyu-fries/05-genlog' },
+          ],
+        },
+      ],
       '/guide/': [
         {
           text: '入门',
