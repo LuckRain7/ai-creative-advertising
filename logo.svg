@@ -1,0 +1,16 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 32 32">
+  <defs>
+    <linearGradient id="bg" x1="0" y1="0" x2="32" y2="32" gradientUnits="userSpaceOnUse">
+      <stop stop-color="#f76707"/>
+      <stop offset="1" stop-color="#e8590c"/>
+    </linearGradient>
+  </defs>
+  <!-- 暖橙渐变圆角方块 -->
+  <rect width="32" height="32" rx="7" fill="url(#bg)"/>
+  <!-- 创意魔棒：斜向笔触 -->
+  <line x1="7" y1="25" x2="21" y2="11" stroke="#fff" stroke-width="2.8" stroke-linecap="round"/>
+  <!-- 主火花：四角星 -->
+  <path d="M23 3L24.3 6.7L28 8L24.3 9.3L23 13L21.7 9.3L18 8L21.7 6.7Z" fill="#fff"/>
+  <!-- 副火花：菱形 -->
+  <rect x="13.5" y="4.5" width="3" height="3" rx="0.6" transform="rotate(45 15 6)" fill="#fff"/>
+</svg>
