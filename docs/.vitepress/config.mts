@@ -74,6 +74,7 @@ export default defineConfig({
             { text: '04b · Gemini 执行表', link: '/lab/shuangyu-fries/04b-gemini-v1' },
             { text: '04c · B 片即梦执行表', link: '/lab/shuangyu-fries/04c-b-jimeng-v1' },
             { text: '04d · B 片 Gemini 执行表', link: '/lab/shuangyu-fries/04d-b-gemini-v1' },
+            { text: '04e · Gemini 20s 预览', link: '/lab/shuangyu-fries/04e-gemini-preview-v1' },
             { text: '05 · 生成日志', link: '/lab/shuangyu-fries/05-genlog' },
           ],
         },

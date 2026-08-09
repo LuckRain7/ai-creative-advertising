@@ -2,7 +2,9 @@
 
 > 阶段 4 · 执行 ｜ 2026-08-09 ｜ **内部工作文档，可直接粘贴使用**
 >
-> 20s = 4 × 5s，全片用 Gemini（Veo 3）生成。十镜完整版走 [04a · 即梦执行表](./04a-jimeng-v1)，镜头设计同源，见 [03 · 分镜](./03-storyboard) 与 [04 · Prompt 组](./04-prompts)。
+> 20s = 4 × 5s，全片用 Gemini（Veo）生成。十镜完整版走 [04a · 即梦执行表](./04a-jimeng-v1)，镜头设计同源，见 [03 · 分镜](./03-storyboard) 与 [04 · Prompt 组](./04-prompts)。
+>
+> 2026-08-09 起 Prompt 改为**中文**：便于 review，直接给 Gemini 中文即可。若某段生成质量不达标，把该段译回英文重跑（Veo 历史表现英文略稳），其余不动。
 
 ## 这版是什么
 
@@ -12,13 +14,11 @@
 发客户前过一遍[字幕红线](./03-storyboard#字幕红线)：非油炸、更健康、低脂、0 负担、不含丙烯酰胺、与传统油炸的任何对比——**一律不出现**。
 :::
 
-## 与即梦版的三处工具差异
+## 与即梦版的工具差异
 
-见 [04 · 换工具怎么办](./04-prompts#换工具怎么办)：
-
-1. **英文更有效**——Prompt 全英文；
-2. **音效直接写进 Prompt**——Veo 原生出音频，每段含 Audio 行；
-3. **首尾帧改为起止状态的文字描述**——一镜到底，不上传帧图。
+1. **音效直接写进 Prompt**——Veo 原生出音频，每段含「音效」行；
+2. **首尾帧改为起止状态的文字描述**——一镜到底，不上传帧图；
+3. 语言中文（与即梦版一致），review 优先。
 
 **取舍**：镜头 1–3 合为段 1；镜头 5+7+8 合为段 3；**离心脱油（镜头 6）不在本版**——2c 未确认，精简版里单段占比大、撤换成本高。确认后用文末备用 Prompt 插为第 5 段（25s 版）。
 
@@ -38,22 +38,20 @@
 ## 段 1 · 原薯鲜切
 
 ```
-High-end food-ad macro cinematography, documentary realism, warm grade,
-subtle film grain, natural food colors, no oversharpening, no oversaturation,
-commercial lighting, photorealistic live-action look.
+高端食品广告微距摄影，接近纪录片的真实质感，暖调，
+轻微胶片颗粒，自然肤色与食物色彩，不过度锐化、不过度饱和，
+商业级布光，实拍感。
 
-A whole fresh potato with thin soil on its skin falls onto a dark walnut
-cutting board and bounces once. A heavy chef's knife cuts into it; the pale
-cut face oozes starchy moisture. Freshly cut potato strips with rough,
-irregular hand-cut edges tumble down in slow motion.
+一整颗新鲜马铃薯，表皮微带薄土，落在深色胡桃木案板上，轻微弹跳一次；
+一把厚背主厨刀切入，乳白的切面渗出淀粉汁水；
+切好的马铃薯条边缘带自然毛刺与不规则棱角，慢动作落下。
 
-Macro, shallow depth of field, side backlight rimming the potato skin,
-dark background, camera fixed.
+微距，浅景深，侧逆光勾出表皮质感与轮廓，背景压暗，镜头固定。
 
-Audio: a dull thud, one clean crisp knife cut, soft tapping of falling strips.
+音效：一声闷响「咚」，一下干净清脆的切入声，土豆条落下的轻响。
 
-No text, no logos, no branding, no packaging, no Japanese or Chinese characters,
-no cartoon, no 3D-render look.
+不出现任何文字、logo、品牌标识、包装，不出现日文或中文字符，
+不卡通，无 3D 渲染感。
 ```
 
 **验收**：土豆条边缘必须有毛刺（「原薯鲜切」唯一的画面物证）；边缘规整即废。
@@ -63,21 +61,21 @@ no cartoon, no 3D-render look.
 ## 段 2 · 低温真空
 
 ```
-High-end food-ad macro cinematography, documentary realism, warm grade,
-subtle film grain, natural food colors, no oversharpening, no oversaturation,
-commercial lighting, photorealistic live-action look.
+高端食品广告微距摄影，接近纪录片的真实质感，暖调，
+轻微胶片颗粒，自然肤色与食物色彩，不过度锐化、不过度饱和，
+商业级布光，实拍感。
 
-Inside a sealed stainless-steel vacuum chamber, pale golden oil stays almost
-perfectly calm. Potato strips float suspended in the oil; only tiny fine
-bubbles rise slowly to the surface and pop. No violent boiling, no white foam.
+封闭不锈钢真空舱内，浅金色油面几乎完全平静，
+马铃薯条悬浮在油中，只有极细密的小气泡缓慢上升到油面破裂，
+无剧烈翻滚，无大量白色泡沫。
 
-Medium close-up, shallow depth of field, single warm light from above,
-dark surroundings, camera creeping in very slowly.
+中特写，浅景深，舱内单一暖黄光源从上方打下，四周暗，
+镜头极缓慢推近。
 
-Audio: a low mechanical hum, near silence, faint tiny bubble pops.
+音效：低频机械嗡鸣，近乎安静，细微的气泡破裂声。
 
-No text, no logos, no branding, no packaging, no Japanese or Chinese characters,
-no cartoon, no 3D-render look.
+不出现任何文字、logo、品牌标识、包装，不出现日文或中文字符，
+不卡通，无 3D 渲染感。
 ```
 
 **验收**：油面平静是全片唯一的「不一样」证据；翻滚沸腾即废，重跑。
@@ -87,48 +85,45 @@ no cartoon, no 3D-render look.
 ## 段 3 · 所以它是脆的
 
 ```
-High-end food-ad macro cinematography, documentary realism, warm grade,
-subtle film grain, natural food colors, no oversharpening, no oversaturation,
-commercial lighting, photorealistic live-action look.
+高端食品广告微距摄影，接近纪录片的真实质感，暖调，
+轻微胶片颗粒，自然肤色与食物色彩，不过度锐化、不过度饱和，
+商业级布光，实拍感。
 
-Extreme macro of a pale golden potato-crisp strip's cross-section on a dark
-stone surface: dense pores gradually light up as strong backlight builds
-behind it, the honeycomb structure glows. Then two fingertips snap the strip;
-it breaks with a sharp crack, fine dry crumbs bursting outward in slow
-motion. Surface dry and matte, no oil shine.
+深色石质台面上，一根浅金色薯条脆的断面极致微距：
+强逆光从后方逐渐增强，照亮细密的多孔蜂窝结构，孔洞边缘依次点亮。
+随后两根指尖把它掰断——清脆的咔嚓声，
+细碎干爽的碎屑慢动作向四周飞散。表面干爽哑光，无油光。
 
-Extreme macro, shallow depth of field, pure black background, strong backlight,
-camera creeping in.
+极致微距，浅景深，纯黑背景，强逆光，镜头极缓慢推近。
 
-Audio: quiet rising tension, then one loud crisp CRACK, fine crumb scatter.
+音效：安静的张力上升，然后一声响亮清脆的「咔嚓」，细碎屑飞散声。
 
-No text, no logos, no branding, no packaging, no Japanese or Chinese characters,
-no cartoon, no 3D-render look.
+不出现任何文字、logo、品牌标识、包装，不出现日文或中文字符，
+不卡通，无 3D 渲染感。
 ```
 
-**验收**：先透光、后咔嚓，因果顺序不能反；只入画指尖，手部畸形即改跑无人版本（删第三、四行手指描述，改为 the strip snaps on its own）。
+**验收**：先透光、后咔嚓，因果顺序不能反；只入画指尖，手部畸形即改跑无人版本（删掉手指描述，改为「薯条脆自行折断」）。
 
 ---
 
 ## 段 4 · 成品质感 + 留空
 
 ```
-High-end food-ad macro cinematography, documentary realism, warm grade,
-subtle film grain, natural food colors, no oversharpening, no oversaturation,
-commercial lighting, photorealistic live-action look.
+高端食品广告微距摄影，接近纪录片的真实质感，暖调，
+轻微胶片颗粒，自然肤色与食物色彩，不过度锐化、不过度饱和，
+商业级布光，实拍感。
 
-A pile of pale golden potato-crisp strips — light gold, NOT brown — on a dark
-stone surface, dry matte texture, fine porous surface with tiny red seasoning
-specks. More strips fall slowly from above, colliding and stacking. Camera
-slowly pulls back, leaving clean empty space above the pile.
+一堆浅金色的薯条脆——浅金，不是深褐色——散落在深色石质台面上，
+干爽哑光，细密多孔的表面带细小红色调味颗粒。
+更多薯条脆从画面上方缓慢落下，碰撞堆叠。
+镜头缓慢拉远，在堆叠上方留出干净的空白。
 
-Close-up widening to medium, soft top light with a hard side rim,
-dark background.
+特写拉至中景，柔和顶光为主，侧面一盏硬光勾边，背景压暗。
 
-Audio: soft sandy rattling of strips colliding, gentle musical resolve.
+音效：薯条脆相互碰撞的沙沙声，轻柔的收尾音乐。
 
-No text, no logos, no branding, no packaging — the frame stays clean for
-compositing. No Japanese or Chinese characters, no cartoon, no 3D-render look.
+不出现任何文字、logo、品牌标识、包装——画面保持干净，留给后期合成。
+不出现日文或中文字符，不卡通，无 3D 渲染感。
 ```
 
 **验收**：浅金非深褐；上方留空是给包装合成与主标题的位置，**包装不生成**。片尾落版 logo 用 `images/refs/logo.jpg` 去背叠加，带不带 ® 等客户确认。
@@ -142,21 +137,20 @@ compositing. No Japanese or Chinese characters, no cartoon, no 3D-render look.
 :::
 
 ```
-High-end food-ad macro cinematography, documentary realism, warm grade,
-subtle film grain, natural food colors, no oversharpening, no oversaturation,
-commercial lighting, photorealistic live-action look.
+高端食品广告微距摄影，接近纪录片的真实质感，暖调，
+轻微胶片颗粒，自然肤色与食物色彩，不过度锐化、不过度饱和，
+商业级布光，实拍感。
 
-Close-up of an industrial stainless-steel centrifuge drum lined with pale
-golden potato strips. The drum spins up; strips press against the perforated
-wall and fine oil droplets are flung outward through the holes in radial
-streaks, natural motion blur.
+工业离心机不锈钢内筒特写，筒内铺着一层浅金色的马铃薯条，
+内筒开始高速旋转，薯条被甩向带细密滤孔的筒壁，
+细小油滴从滤孔向外飞出，形成放射状轨迹，自然的运动模糊。
 
-Medium shot, cool white industrial light, hard metal reflections, camera fixed.
+中景，冷白色工业光源，金属表面硬朗反光，镜头固定。
 
-Audio: mechanical whir accelerating, faint oil spatter.
+音效：机械声由慢到快加速，轻微的油滴飞溅声。
 
-No text, no logos, no branding, no packaging, no Japanese or Chinese characters,
-no cartoon, no 3D-render look.
+不出现任何文字、logo、品牌标识、包装，不出现日文或中文字符，
+不卡通，无 3D 渲染感。
 ```
 
 ## 生成日志

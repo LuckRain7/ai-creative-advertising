@@ -2,11 +2,11 @@
 
 > 阶段 4 · 执行 ｜ 2026-08-09 ｜ **内部工作文档，可直接粘贴使用**
 >
-> B 片 = 开盖片：6–10 秒、9:16 竖屏、抖音/小红书信息流。定义见 [01 · 提案](./01-proposal)，即梦版见 [04c](./04c-b-jimeng-v1)，镜头设计同源，仅工具语法不同。
+> B 片 = 开盖片：9:16 竖屏、抖音/小红书信息流。定义见 [01 · 提案](./01-proposal)，即梦版见 [04c](./04c-b-jimeng-v1)，镜头设计同源，仅工具语法不同。
 >
-> 与即梦版差异同 [04b](./04b-gemini-v1#与即梦版的三处工具差异)：英文、音效写进 Prompt、一镜到底。
+> 与即梦版差异：音效写进 Prompt（Veo 原生出音频）、一镜到底不上传帧图。Prompt 为**中文**，直接粘贴即可（2026-08-09 起统一中文，review 优先；某段质量不达标时把该段译回英文重跑）。
 
-## 镜头表（8 秒）
+## 镜头表
 
 | # | 时长 | 画面 | 来源 |
 |---|---|---|---|
@@ -20,22 +20,22 @@
 ## Prompt 1 · 杯口俯视露出
 
 ```
-High-end food-ad macro cinematography, documentary realism, warm grade,
-subtle film grain, natural food colors, no oversharpening, no oversaturation,
-commercial lighting, photorealistic live-action look.
+高端食品广告微距摄影，接近纪录片的真实质感，暖调，
+轻微胶片颗粒，自然肤色与食物色彩，不过度锐化、不过度饱和，
+商业级布光，实拍感。
 
-Vertical 9:16 top-down view looking straight into an opened snack cup:
-a silver rolled rim, the cup filled with pale golden potato-crisp strips
-with tiny red seasoning specks, dry matte surface, no oil shine.
-The cup's outer wall shows only plain color, no print. Dark wooden desk
-background. Camera creeps in very slowly toward the cup opening.
+9:16 竖屏，俯视直下视角看进一个已开盖的零食杯口：
+银色卷边一圈，杯内装满浅金色薯条脆，
+表面带细小红色调味颗粒，干爽哑光，无油光。
+杯身外壁只露出纯色，无任何印刷。背景为深色木桌。
+镜头极缓慢向杯口推近。
 
-Overhead macro, shallow depth of field, soft top light with a hard side rim.
+俯拍，微距，浅景深，柔和顶光 + 侧面一盏硬光勾边。
 
-Audio: a faint foil crinkle just passed, then near silence, soft sandy rustle.
+音效：刚过去的一声轻铝箔撕揭声，然后短安静，轻微的沙沙声。
 
-No text, no logos, no branding, no packaging print, no Japanese or Chinese
-characters, no cartoon, no 3D-render look.
+不出现任何文字、logo、品牌标识、包装印刷，不出现日文或中文字符，
+不卡通，无 3D 渲染感。
 ```
 
 **验收**：杯口只有银色卷边与产品；杯身出现任何印刷即废。
@@ -45,45 +45,43 @@ characters, no cartoon, no 3D-render look.
 ## Prompt 2 · 掰断
 
 ```
-High-end food-ad macro cinematography, documentary realism, warm grade,
-subtle film grain, natural food colors, no oversharpening, no oversaturation,
-commercial lighting, photorealistic live-action look.
+高端食品广告微距摄影，接近纪录片的真实质感，暖调，
+轻微胶片颗粒，自然肤色与食物色彩，不过度锐化、不过度饱和，
+商业级布光，实拍感。
 
-Vertical 9:16 extreme macro, subject placed in the upper third of the frame:
-two fingertips snap a pale golden potato-crisp strip; it breaks with a sharp
-crack, fine dry crumbs burst outward in slow motion, porous cross-section
-visible, surface dry and matte, no oil shine. Pure black background,
-strong side light, camera fixed.
+9:16 竖屏极致微距，主体置于画面上三分之一：
+两根指尖捏住一根浅金色薯条脆，用力掰断——清脆的咔嚓声，
+细碎干爽的碎屑慢动作向四周飞散，断面露出多孔结构，
+表面干爽哑光，无油光。纯黑背景，强侧光，镜头固定。
 
-Audio: one loud crisp CRACK, fine crumb scatter — the loudest sound in the film.
+音效：一声响亮清脆的「咔嚓」——全片最响，细碎屑飞散声。
 
-No text, no logos, no branding, no packaging, no Japanese or Chinese characters,
-no cartoon, no 3D-render look.
+不出现任何文字、logo、品牌标识、包装，不出现日文或中文字符，
+不卡通，无 3D 渲染感。
 ```
 
-**验收**：主体在**上三分之一**（下三分之一留给字幕与账号信息区）；手部畸形即改跑无人版本（the strip snaps on its own）。
+**验收**：主体在**上三分之一**（下三分之一留给字幕与账号信息区）；手部畸形即改跑无人版本（薯条脆自行折断）。
 
 ---
 
 ## Prompt 3 · 落版背景（产品不生成）
 
 ```
-High-end food-ad macro cinematography, documentary realism, warm grade,
-subtle film grain, natural food colors, no oversharpening, no oversaturation,
-commercial lighting, photorealistic live-action look.
+高端食品广告微距摄影，接近纪录片的真实质感，暖调，
+轻微胶片颗粒，自然肤色与食物色彩，不过度锐化、不过度饱和，
+商业级布光，实拍感。
 
-Vertical 9:16 clean studio backdrop: dark stone surface in the lower half,
-soft warm gradient above, gentle light spots and depth blur low in the frame,
-upper half left completely empty. No objects.
+9:16 竖屏干净影棚背景：下半部为深色石质台面，
+上方柔和暖调渐变，光斑与景深虚化集中在画面下半部，
+上半部完全留空。无任何物体。
 
-Medium shot, shallow depth of field, eye level,
-key light upper-left 45 degrees, soft fill right, background gently graded down.
+中景，浅景深，平视，
+影棚布光，主光左上方 45 度，右侧柔光补光，背景轻微渐变压暗。
 
-Audio: gentle musical resolve.
+音效：轻柔的收尾音乐。
 
-No text, no logos, no branding, no packaging, no objects — the frame stays
-clean for compositing. No Japanese or Chinese characters, no cartoon,
-no 3D-render look.
+不出现任何文字、logo、品牌标识、包装、物体——画面保持干净，留给合成。
+不出现日文或中文字符，不卡通，无 3D 渲染感。
 ```
 
 包装用 `images/refs/render-cup.jpg` 去背合成于中下位，主标题「原薯鲜切」落上方留空；片尾 logo 用 `logo.jpg`（® 待确认）。正面平视，不突出日文副标。
