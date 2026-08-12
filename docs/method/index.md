@@ -10,6 +10,7 @@
 | [片型图谱：这支片子该长什么样](/method/ad-formats) | 十一种片型怎么排除、怎么选，AI 让性价比排序变了 |
 | [Big Idea 与洞察：AI 的能力边界](/method/big-idea) | AI 帮你想创意，到底能帮到哪一步 |
 | [分镜设计：镜头语言翻译表](/method/storyboard) | 把「我想要有质感」翻译成模型听得懂的话 |
+| [AI 视频包装保真：参考图与成片不一致怎么解决](/method/brand-consistency) | 包装漂移的原因、生成控制方法与商用后期兜底流程 |
 
 ## 一句话概括整套方法
 
@@ -23,5 +24,4 @@
 遇到相关经验就往里填，点进去有写作模板。
 :::
 
-- [品牌一致性控制](/method/brand-consistency)
 - [A/B 创意批量测试](/method/ab-testing)

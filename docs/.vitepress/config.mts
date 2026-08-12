@@ -69,12 +69,28 @@ export default defineConfig({
             },
             { text: '02 · 物料清单', link: '/lab/shuangyu-fries/02-materials' },
             { text: '03 · 分镜', link: '/lab/shuangyu-fries/03-storyboard' },
+            {
+              text: '03a · A 片工艺完整性版',
+              link: '/lab/shuangyu-fries/03a-a-process-complete-storyboard',
+            },
+            {
+              text: '03c · C 片感官奇观分镜',
+              link: '/lab/shuangyu-fries/03c-c-sensory-wonder-storyboard',
+            },
+            {
+              text: '03d · D 片咔嚓快乐分镜',
+              link: '/lab/shuangyu-fries/03d-d-crunch-happiness-storyboard',
+            },
             { text: '04 · Prompt 组', link: '/lab/shuangyu-fries/04-prompts' },
             { text: '04a · 即梦执行表', link: '/lab/shuangyu-fries/04a-jimeng-v1' },
             { text: '04b · Gemini 执行表', link: '/lab/shuangyu-fries/04b-gemini-v1' },
             { text: '04c · B 片即梦执行表', link: '/lab/shuangyu-fries/04c-b-jimeng-v1' },
             { text: '04d · B 片 Gemini 执行表', link: '/lab/shuangyu-fries/04d-b-gemini-v1' },
             { text: '04e · Gemini 20s 预览', link: '/lab/shuangyu-fries/04e-gemini-preview-v1' },
+            {
+              text: '04f · A 片 v2 Gemini 执行表',
+              link: '/lab/shuangyu-fries/04f-a-process-v2-gemini',
+            },
             { text: '05 · 生成日志', link: '/lab/shuangyu-fries/05-genlog' },
           ],
         },
@@ -98,13 +114,16 @@ export default defineConfig({
             { text: '片型图谱：这支片子该长什么样', link: '/method/ad-formats' },
             { text: 'Big Idea 与洞察：AI 的能力边界', link: '/method/big-idea' },
             { text: '分镜设计：镜头语言翻译表', link: '/method/storyboard' },
+            {
+              text: 'AI 视频包装保真',
+              link: '/method/brand-consistency',
+            },
           ],
         },
         {
           text: '待补充',
           collapsed: false,
           items: [
-            { text: '品牌一致性控制', link: '/method/brand-consistency' },
             { text: 'A/B 创意批量测试', link: '/method/ab-testing' },
           ],
         },
