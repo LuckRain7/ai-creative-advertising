@@ -61,37 +61,118 @@ export default defineConfig({
           text: '双宇食品 · 薯条脆',
           items: [
             { text: '项目首页', link: '/lab/shuangyu-fries/' },
-            { text: '00 · Brief 与解读', link: '/lab/shuangyu-fries/00-brief' },
-            { text: '01 · 提案', link: '/lab/shuangyu-fries/01-proposal' },
             {
-              text: '01a · 目标人群与竞品',
-              link: '/lab/shuangyu-fries/01a-audience-competitors',
-            },
-            { text: '02 · 物料清单', link: '/lab/shuangyu-fries/02-materials' },
-            { text: '03 · 分镜', link: '/lab/shuangyu-fries/03-storyboard' },
-            {
-              text: '03a · A 片工艺完整性版',
-              link: '/lab/shuangyu-fries/03a-a-process-complete-storyboard',
-            },
-            {
-              text: '03c · C 片感官奇观分镜',
-              link: '/lab/shuangyu-fries/03c-c-sensory-wonder-storyboard',
+              text: '项目资料',
+              collapsed: true,
+              items: [
+                { text: '00 · Brief 与解读', link: '/lab/shuangyu-fries/00-brief' },
+                { text: '01 · 提案', link: '/lab/shuangyu-fries/01-proposal' },
+                {
+                  text: '01a · 目标人群与竞品',
+                  link: '/lab/shuangyu-fries/01a-audience-competitors',
+                },
+                { text: '02 · 物料清单', link: '/lab/shuangyu-fries/02-materials' },
+                { text: '05 · 生成日志', link: '/lab/shuangyu-fries/05-genlog' },
+              ],
             },
             {
-              text: '03d · D 片咔嚓快乐分镜',
-              link: '/lab/shuangyu-fries/03d-d-crunch-happiness-storyboard',
+              text: 'A 片 · 广告主片',
+              collapsed: false,
+              items: [
+                {
+                  text: '03a · 工艺完整性分镜',
+                  link: '/lab/shuangyu-fries/03a-a-process-complete-storyboard',
+                },
+                {
+                  text: '04f · v2 Gemini 执行表',
+                  link: '/lab/shuangyu-fries/04f-a-process-v2-gemini',
+                },
+                {
+                  text: '04h · v3 广告化执行稿',
+                  link: '/lab/shuangyu-fries/04h-a-process-v3-researched',
+                },
+              ],
             },
-            { text: '04 · Prompt 组', link: '/lab/shuangyu-fries/04-prompts' },
-            { text: '04a · 即梦执行表', link: '/lab/shuangyu-fries/04a-jimeng-v1' },
-            { text: '04b · Gemini 执行表', link: '/lab/shuangyu-fries/04b-gemini-v1' },
-            { text: '04c · B 片即梦执行表', link: '/lab/shuangyu-fries/04c-b-jimeng-v1' },
-            { text: '04d · B 片 Gemini 执行表', link: '/lab/shuangyu-fries/04d-b-gemini-v1' },
-            { text: '04e · Gemini 20s 预览', link: '/lab/shuangyu-fries/04e-gemini-preview-v1' },
             {
-              text: '04f · A 片 v2 Gemini 执行表',
-              link: '/lab/shuangyu-fries/04f-a-process-v2-gemini',
+              text: 'B 片 · 开盖片',
+              collapsed: true,
+              items: [
+                {
+                  text: '04c · 即梦执行表',
+                  link: '/lab/shuangyu-fries/04c-b-jimeng-v1',
+                },
+                {
+                  text: '04d · Gemini 执行表',
+                  link: '/lab/shuangyu-fries/04d-b-gemini-v1',
+                },
+              ],
             },
-            { text: '05 · 生成日志', link: '/lab/shuangyu-fries/05-genlog' },
+            {
+              text: 'C 片 · 感官奇观片',
+              collapsed: true,
+              items: [
+                {
+                  text: '03c · 导演分镜',
+                  link: '/lab/shuangyu-fries/03c-c-sensory-wonder-storyboard',
+                },
+              ],
+            },
+            {
+              text: 'D 片 · 咔嚓快乐片',
+              collapsed: true,
+              items: [
+                {
+                  text: '03d · 导演分镜',
+                  link: '/lab/shuangyu-fries/03d-d-crunch-happiness-storyboard',
+                },
+              ],
+            },
+            {
+              text: '蜂蜜黄油味独立感官创意片',
+              collapsed: false,
+              items: [
+                {
+                  text: '03e · 导演执行稿',
+                  link: '/lab/shuangyu-fries/03e-honey-butter-sensory-film',
+                },
+                {
+                  text: '04i · 无包装镜头 v2',
+                  link: '/lab/shuangyu-fries/04i-honey-butter-v2-optimization',
+                },
+              ],
+            },
+            {
+              text: '番茄味独立感官创意片',
+              collapsed: false,
+              items: [
+                {
+                  text: '03f · 原始导演执行稿',
+                  link: '/lab/shuangyu-fries/03f-tomato-sensory-film',
+                },
+                {
+                  text: '04j · v2 成片优化',
+                  link: '/lab/shuangyu-fries/04j-tomato-v2-optimization',
+                },
+              ],
+            },
+            {
+              text: '历史版本与跨片预览',
+              collapsed: true,
+              items: [
+                { text: '03 · A 片 demo 分镜', link: '/lab/shuangyu-fries/03-storyboard' },
+                { text: '04 · A 片 demo Prompt', link: '/lab/shuangyu-fries/04-prompts' },
+                { text: '04a · A 片即梦 v1', link: '/lab/shuangyu-fries/04a-jimeng-v1' },
+                { text: '04b · A 片 Gemini v1', link: '/lab/shuangyu-fries/04b-gemini-v1' },
+                {
+                  text: '04e · A/B 片 20s 预览',
+                  link: '/lab/shuangyu-fries/04e-gemini-preview-v1',
+                },
+                {
+                  text: '04g · 蜂蜜黄油第一轮关键帧',
+                  link: '/lab/shuangyu-fries/04g-honey-butter-keyframes',
+                },
+              ],
+            },
           ],
         },
       ],
@@ -158,6 +239,7 @@ export default defineConfig({
             { text: 'AI 视频增强 · 懂生成', link: '/tools/video-enhancement' },
             { text: 'AI 视频降本 · 三种做法', link: '/tools/video-cost-reduction' },
             { text: 'AI 视频降本 · 钱花在刀刃上', link: '/tools/video-budget-spending' },
+            { text: 'Gemini · 控制视频时长', link: '/tools/gemini-video-duration' },
           ],
         },
         {

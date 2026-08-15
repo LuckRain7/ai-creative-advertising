@@ -11,6 +11,7 @@
 | [AI 视频增强 · 懂生成](/tools/video-enhancement) | 字节原文《为什么 AI 视频，需要“懂生成”的画质增强》全文存档 |
 | [AI 视频降本 · 三种做法](/tools/video-cost-reduction) | 字节原文《AI 视频降本的三种做法，只有一种不牺牲画质》全文存档 |
 | [AI 视频降本 · 钱花在刀刃上](/tools/video-budget-spending) | 字节原文《把 AI 视频的钱花在刀刃上，不是每一刀上》全文存档 |
+| [Gemini · 控制视频时长](/tools/gemini-video-duration) | Gemini Web 问答存档《Gemini 生成视频，如何控制时长》，含 5/3/8 秒全套中英提示词 |
 
 ## 关于内容准确性的说明
 
