@@ -132,11 +132,15 @@ export default defineConfig({
               collapsed: false,
               items: [
                 {
-                  text: '03e · 导演执行稿',
+                  text: '03g · 声纹测试互动感官片',
+                  link: '/lab/shuangyu-fries/03g-honey-butter-soundprint-test',
+                },
+                {
+                  text: '03e · 原始导演执行稿',
                   link: '/lab/shuangyu-fries/03e-honey-butter-sensory-film',
                 },
                 {
-                  text: '04i · 无包装镜头 v2',
+                  text: '04i · 旧方向无包装镜头 v2',
                   link: '/lab/shuangyu-fries/04i-honey-butter-v2-optimization',
                 },
               ],

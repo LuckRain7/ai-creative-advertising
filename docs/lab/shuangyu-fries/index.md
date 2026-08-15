@@ -64,8 +64,9 @@
 
 | 文件 | 状态 |
 |---|---|
-| [03e · 导演执行稿](./03e-honey-butter-sensory-film) | 20 秒 / 6 镜头 / ASMR 执行稿 |
-| [04i · 无包装镜头 v2](./04i-honey-butter-v2-optimization) | **当前版** · 第一轮实图复盘 + 产品母版纠偏 + 重跑 Prompt |
+| [03g · 声纹测试互动感官片](./03g-honey-butter-soundprint-test) | **当前推荐方向** · 12 秒 / 9:16 / A-B-C 声音选择题 |
+| [03e · 原始导演执行稿](./03e-honey-butter-sensory-film) | 历史方向 · 20 秒 / 6 镜头 / 传统 ASMR 执行稿 |
+| [04i · 无包装镜头 v2](./04i-honey-butter-v2-optimization) | 旧方向优化 · 第一轮实图复盘 + 产品母版纠偏 + 重跑 Prompt |
 
 ### 番茄味独立感官创意片
 
