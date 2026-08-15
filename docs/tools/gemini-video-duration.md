@@ -8,9 +8,18 @@
 
 在通过 Gemini 或基于 Google 的视频生成模型（如 Veo）生成视频时，控制视频时长通常有以下几种方式和注意事项。
 
-## 一、在提示词（Prompt）中明确指定时间或节奏
+## 一、把视频时长放在每条 Prompt 的第一行
 
-AI 模型虽然不能做到毫秒级精准，但可以通过提示词引导生成的镜头节奏与大致时长。
+Gemini Web 在没有看到明确时长时，可能按默认值生成 10 秒。每一个独立分镜都要单独锁定时长，不能只在整段分镜表或上一条 Prompt 中说明。
+
+推荐把时长同时写成中文标签和英文首句，且放在所有镜头描述之前：
+
+```text
+视频时长：5 秒（必须生成 5 秒，不要生成默认 10 秒）。
+A 5-second video, one continuous shot, ...
+```
+
+如果需要多个动作，再在同一条 Prompt 内拆解时间轴。时间轴的最后一个时间点必须等于首行的总时长。
 
 **指定具体秒数**：例如 “A 5-second slow-motion clip of...”（一段 5 秒的慢动作镜头）。
 
@@ -48,12 +57,14 @@ AI 模型虽然不能做到毫秒级精准，但可以通过提示词引导生�
 **中文提示词**
 
 ```text
+视频时长：5 秒（必须生成 5 秒，不要生成默认 10 秒）。
 5秒超慢动作微距镜头。纯黑影棚背景下，一颗新鲜饱满的成熟红番茄自画面顶部垂直落入清澈水中，激起细腻晶莹的水花与微小气泡。第0至2秒番茄入水，第3至5秒水滴在柔和影棚侧光下悬浮回落。电影级质感，8k分辨率，无多余杂物与文字。
 ```
 
 **英文提示词（生成质量更佳）**
 
 ```text
+Duration: 5 seconds. Do not generate the default 10-second clip.
 A 5-second ultra slow-motion macro shot. In a solid dark studio background, a single fresh, ripe red tomato falls vertically into crystal-clear water, creating delicate splashes and tiny rising air bubbles. Seconds 0-2 capture the impact and submersion; seconds 3-5 focus on suspended droplets catching soft cinematic rim light. 8k resolution, crisp commercial lighting, no text, no synthetic artifacts.
 ```
 
@@ -62,12 +73,14 @@ A 5-second ultra slow-motion macro shot. In a solid dark studio background, a si
 **中文提示词**
 
 ```text
+视频时长：3 秒（必须生成 3 秒，不要生成默认 10 秒）。
 3秒平滑快推镜头。极简纯色展台上，放置着一件哑光质感的现代工业风设计水杯。镜头在3秒内以恒定速度从全身中景推至杯身细节微距，光影随推镜头在表面形成流动的微光反光。4k，广告级摄影质感。
 ```
 
 **英文提示词**
 
 ```text
+Duration: 3 seconds. Do not generate the default 10-second clip.
 A smooth 3-second rapid push-in shot. On a minimalist matte podium, a modern industrial-design tumbler sits centered. The camera pushes in at a steady, controlled pace from a medium shot to a tight macro detail over the course of 3 seconds, with studio key lighting casting a subtle dynamic gleam across the surface. 4k, sleek commercial cinematography.
 ```
 
@@ -76,17 +89,19 @@ A smooth 3-second rapid push-in shot. On a minimalist matte podium, a modern ind
 **中文提示词**
 
 ```text
+视频时长：8 秒（必须生成 8 秒，不要生成默认 10 秒）。
 8秒缓慢环绕平移镜头。晨雾缭绕的传统竹林中，晨光穿透竹叶缝隙形成一道道丁达尔光束。镜头在8秒内自左向右极其平缓地横向平移，竹叶在微风中轻微摇曳，光斑随移动缓缓变化。胶片质感，氛围宁静。
 ```
 
 **英文提示词**
 
 ```text
+Duration: 8 seconds. Do not generate the default 10-second clip.
 An 8-second slow cinematic lateral tracking shot. Inside a misty bamboo forest at dawn, soft golden god rays pierce through the dense bamboo canopy. The camera glides steadily from left to right over the full 8 seconds; bamboo leaves sway gently in the breeze as atmospheric dust particles float in the light beams. Highly detailed, peaceful cinematic lighting, film grain.
 ```
 
 ## 核心撰写要点
 
-1. **开头锁定总长**：如 “A 5-second slow-motion shot...”。
+1. **第一行锁定总长**：先写 `视频时长：X 秒`，再写 “A X-second ...”；不要把时长埋在段落中间。
 2. **拆解时间轴（可选）**：如果需要多个动作，按时间分配节奏（例如 “Seconds 0-2..., seconds 3-5...”）。
 3. **搭配速度词汇**：使用 slow-motion（慢动作）、steady glide（匀速平移）、rapid burst（瞬间爆发）等词汇辅助模型理解动作幅度。

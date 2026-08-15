@@ -395,35 +395,40 @@ Input image: approved P0 as strict potato-crisp identity reference
 | 05 | 开杯动作成立，包装文字不稳定 | 只生成手、杯口和动作，包装正面后期替换 |
 | 06 | 运动模糊遮挡包装 | 生成无包装背景，真实杯装图合成，最后 1.5 秒锁定 |
 
-## Gemini 10 秒生成规则
+## Gemini 单镜头时长规则
 
-Gemini 视频生成每条固定输出 **10 秒**，不能在提示词中要求 3 秒、5 秒或其他时长。文档中的“成片采用”是剪辑入片时长，不是 Gemini 的生成时长。
+Gemini Web 在 Prompt 没有明确时长时，可能按默认值生成 **10 秒**。因此每一个独立分镜都必须在 Prompt 第一行锁定自己的视频时长，不能只在分镜表或上一条 Prompt 中说明。推荐格式：
+
+```text
+视频时长：X 秒（必须生成 X 秒，不要生成默认 10 秒）。
+A X-second video, one continuous shot, ...
+```
 
 每条 Gemini Prompt 必须同时满足以下规则：
 
-- 明确写 `10-second video`，并把核心动作安排在前 6 秒内完成，后 2–4 秒保持最终状态，作为剪辑余量。
-- 不允许 10 秒全程静止。即使是产品落版，也要有极缓慢推进、光线或颗粒的微小真实变化。
-- 首尾帧只约束身份、构图和最终状态；动作必须在中间发生，不能把首帧直接延长成 10 秒。
-- 生成后从 10 秒素材中截取“动作最完整、无变形、无水印干扰”的连续片段，再按 15 秒时间线拼接。
-- 若动作在前 2 秒完成，后面只能作为尾帧保持段，不能把整条 10 秒视频原样放进成片。
+- 第一行写 `视频时长：X 秒`，第二行用 `X-second video` 重复一次；X 必须与下表“生成时长”和镜头动作时间轴一致。
+- 把完整动作放在该镜头的总时长内，最后 0.2–0.5 秒只保留稳定尾帧；不要让动作超出总时长。
+- 不允许全程静止。即使是产品落版，也要有极缓慢推进、光线或颗粒的微小真实变化。
+- 首尾帧只约束身份、构图和最终状态；动作必须在中间发生，不能把首帧直接延长成整条视频。
+- 生成完成后检查实际文件时长、首尾帧、变形和水印；若平台只能提供固定时长档位，选择不短于目标时长的最近档位，再裁出目标时长。
 
-生成时为每段留出动作余量，成片只使用时间线规定的部分：
+每段直接按成片需要锁定生成时长：
 
 | 素材 | 建议生成 | 成片采用 | 说明 |
 |---|---:|---:|---|
 | P0 | 静图 4 张 | 1 张 | 全片唯一产品母版 |
-| 01 | 固定 10 秒 | 1.8 秒 | 优先截取 00:00–00:01.8；番茄滚动和红色遮挡必须在此段完成 |
-| 02 | 固定 10 秒 | 1.7 秒 | 优先截取 00:00–00:01.7；红色擦镜、产品揭示和颗粒落附必须在此段完成 |
-| 03 | 固定 10 秒 | 3.5 秒 | 优先截取 00:00–00:03.5；保留施压、断裂和升格，后段只作备用 |
-| 04 | 固定 10 秒 | 2 秒 | 优先截取 00:00–00:02；只保留脆屑回落，不要等待静帧 |
-| 05 | 固定 10 秒 | 3.2 秒 | 从铝箔开始移动的有效动作段截取 3.2 秒，包装替换另做 |
-| 06 | 固定 10 秒 | 2.8 秒 | 截取包含轻微推进并进入稳定尾版的 2.8 秒，包装后期合成 |
+| 01 | 1.8 秒 | 1.8 秒 | 番茄滚动和红色遮挡在同一条 1.8 秒 Prompt 内完成 |
+| 02 | 1.7 秒 | 1.7 秒 | 红色擦镜、产品揭示和颗粒落附在同一条 1.7 秒 Prompt 内完成 |
+| 03 | 3.5 秒 | 3.5 秒 | 保留施压、断裂、碎屑升格和尾帧稳定 |
+| 04 | 2 秒 | 2 秒 | 只保留脆屑回落和最后一颗红色颗粒落出 |
+| 05 | 3.2 秒 | 3.2 秒 | 铝箔移动、开杯和前景薯条脆轻微倾斜在时长内完成 |
+| 06 | 2.8 秒 | 2.8 秒 | 轻微推进后进入稳定产品落版，包装后期合成 |
 
 剪辑顺序：先锁定镜头 03 的主咔嚓点，再向前安排番茄颗粒节奏、向后安排开杯和落版。不要先按平均时长拼镜头，否则主咔嚓容易落不到音乐重拍。
 
 ## 最终视频生成 Prompt
 
-以下 Prompt 已绑定本轮通过验收的关键帧。Gemini 统一生成 **10 秒、16:9 横屏、写实商业食品广告、无字幕、无水印**；生成完成后只截取表中“成片采用”时长的有效动作段。不要把 10 秒素材原样当成成片镜头。
+以下 Prompt 已绑定本轮通过验收的关键帧。每条 Prompt 第一行都已写明该镜头的目标时长；Gemini 统一生成 **16:9 横屏、写实商业食品广告、无字幕、无水印**。不要删除第一行的时长，也不要把其他镜头的时长复制过来。
 
 ::: warning 上传前处理
 镜头 1 的首帧为 `2752×1536`、尾帧为 `1376×768`，两者比例一致但分辨率不同。使用要求首尾帧同尺寸的平台时，先把尾帧无损放大到与首帧相同尺寸。镜头 3 的首尾帧已经同为 `2752×1536`，可直接使用。
@@ -435,16 +440,17 @@ Gemini 视频生成每条固定输出 **10 秒**，不能在提示词中要求 3
 
 - 首帧：`images/番茄味独立感官创意片/关键帧1-一颗番茄入场.jpeg`
 - 尾帧：`images/番茄味独立感官创意片/关键帧1尾帧：番茄遮挡转场.jpeg`
-- Gemini 生成：固定 10 秒
-- 成片采用：前 1.8 秒
+- Gemini 生成：1.8 秒（Prompt 首行锁定）
+- 成片采用：完整 1.8 秒
 
 ```text
+视频时长：1.8 秒（必须生成 1.8 秒，不要生成默认 10 秒）。
+A 1.8-second video.
 Use the uploaded first and last frames as strict visual constraints.
-Create one continuous realistic food-commercial shot with no cuts, exactly 10 seconds long.
+Create one continuous realistic food-commercial shot with no cuts, exactly 1.8 seconds long.
 
-Timing: 0.0–0.3s hold the first-frame tomato; 0.3–1.4s complete the roll and camera push;
-1.4–1.8s complete the red wipe into the supplied end frame; 1.8–10.0s hold the end state
-with only subtle natural surface highlight movement. Do not freeze the whole 10 seconds.
+Timing: 0.0–0.25s establish the first-frame tomato; 0.25–1.35s complete the roll and camera push;
+1.35–1.8s complete the red wipe into the supplied end frame and hold it briefly.
 
 一颗完整、成熟、自然鲜红的番茄位于纯黑食品影棚台面左侧。
 番茄从左向右沿水平台面自然滚动约一个番茄直径，速度先稍快、随后平稳减慢；
@@ -453,7 +459,7 @@ with only subtle natural surface highlight movement. Do not freeze the whole 10 
 滚动过程中，一道柔和暖白高光从番茄表皮左侧自然扫到右侧，
 番茄保持真实重量感，不弹跳、不漂浮、不突然加速。
 
-最后0.3秒，番茄继续靠近镜头，红色表皮逐渐占满整个16:9画面，
+最后0.45秒，番茄继续靠近镜头，红色表皮逐渐占满整个16:9画面，
 准确过渡到上传的尾帧；遮挡过程必须是番茄表皮真实靠近摄影机，
 不能变成纯色背景、红色烟雾或抽象特效。
 
@@ -473,16 +479,17 @@ with only subtle natural surface highlight movement. Do not freeze the whole 10 
 
 - 首帧：`images/番茄味独立感官创意片/关键帧1尾帧：番茄遮挡转场.jpeg`
 - 尾帧：`images/番茄味独立感官创意片/关键帧2-番茄风味落脆.jpeg`
-- Gemini 生成：固定 10 秒
-- 成片采用：前 1.7 秒
+- Gemini 生成：1.7 秒（Prompt 首行锁定）
+- 成片采用：完整 1.7 秒
 
 ```text
+视频时长：1.7 秒（必须生成 1.7 秒，不要生成默认 10 秒）。
+A 1.7-second video.
 Use the uploaded first and last frames as strict start and end states.
-Create one continuous realistic macro food shot with no cuts, exactly 10 seconds long.
+Create one continuous realistic macro food shot with no cuts, exactly 1.7 seconds long.
 
-Timing: 0.0–0.3s keep the tomato-red wipe; 0.3–1.1s reveal the product and begin the
-seasoning fall; 1.1–1.7s complete the natural particle adhesion; 1.7–10.0s hold the
-final macro state with tiny focus breathing only. Do not make the first frame last for 10 seconds.
+Timing: 0.0–0.25s keep the tomato-red wipe; 0.25–1.05s reveal the product and begin the
+seasoning fall; 1.05–1.7s complete natural particle adhesion and settle into the end frame.
 
 开场是番茄红色表皮完全遮挡镜头。红色表皮从左向右自然掠过并移出镜头，
 像一颗番茄贴近摄影机滚过形成的真实遮挡转场；
@@ -516,21 +523,21 @@ final macro state with tiny focus breathing only. Do not make the first frame la
 
 - 首帧：`images/番茄味独立感官创意片/关键帧3首帧.jpeg`
 - 尾帧：`images/番茄味独立感官创意片/关键帧3尾帧：断裂后的03B.jpeg`
-- Gemini 生成：固定 10 秒
-- 成片采用：3.5 秒
+- Gemini 生成：3.5 秒（Prompt 首行锁定）
+- 成片采用：完整 3.5 秒
 
 ```text
+视频时长：3.5 秒（必须生成 3.5 秒，不要生成默认 10 秒）。
+A 3.5-second video.
 Use the uploaded first and last frames as strict visual and identity constraints.
-Create one continuous 10-second shot with no cuts. Keep exactly the same camera, black background, hands, fingertips, product scale,
+Create one continuous 3.5-second shot with no cuts. Keep exactly the same camera, black background, hands, fingertips, product scale,
 product color, seasoning particles and horizontal composition throughout the shot.
 
-Timing: 0.0–0.8s establish the intact product and hands; 0.8–1.7s apply pressure and
-deepen the center hairline crack; 1.7–2.1s execute one clean snap; 2.1–3.5s show the
-crumbs in high-speed motion and settle into the supplied end frame; 3.5–10.0s hold the
-broken state with only tiny natural hand stabilization. The first 3.5 seconds must contain
-the complete action; do not output a static 10-second still.
+Timing: 0.0–0.7s establish the intact product and hands; 0.7–1.55s apply pressure and
+deepen the center hairline crack; 1.55–2.0s execute one clean snap; 2.0–3.5s show the
+crumbs in high-speed motion and settle into the supplied end frame.
 
-前0.8秒，两只手从画面左右两端稳定捏住同一根完整薯条脆，
+前0.7秒，两只手从画面左右两端稳定捏住同一根完整薯条脆，
 每侧只显示原有的拇指和食指末端；手指缓慢、克制地向中央施加压力，
 产品中央的短竖向发丝裂纹逐渐加深，产品整体仍保持水平和长度不变。
 
@@ -561,17 +568,17 @@ the complete action; do not output a static 10-second still.
 **输入方式**：单帧图生视频。
 
 - 首帧：`images/番茄味独立感官创意片/关键帧3尾帧：断裂后的03B.jpeg`
-- Gemini 生成：固定 10 秒
-- 成片采用：2 秒
+- Gemini 生成：2 秒（Prompt 首行锁定）
+- 成片采用：完整 2 秒
 
 ```text
+视频时长：2 秒（必须生成 2 秒，不要生成默认 10 秒）。
+A 2-second video.
 Use the uploaded image as a strict first frame and identity reference.
-Create a restrained 10-second continuation of the previous snap shot, with no cuts.
+Create a restrained 2-second continuation of the previous snap shot, with no cuts.
 
-Timing: 0.0–1.5s let the existing crumbs and seasoning particles fall under gravity;
-1.5–2.0s let the final small red particle leave the frame; 2.0–10.0s hold the broken
-product and fingers with only imperceptible breathing and camera stability. The first 2
-seconds must contain the meaningful motion; do not keep a frozen frame for the whole clip.
+Timing: 0.0–1.35s let the existing crumbs and seasoning particles fall under gravity;
+1.35–2.0s let the final small red particle leave the frame and settle the broken product.
 
 左右两截薯条脆、两只手和四枚原有指尖保持几乎完全静止，
 两截之间的距离、产品长度、粗细、颜色和断面方向不发生变化；
@@ -582,7 +589,7 @@ seconds must contain the meaningful motion; do not keep a frozen frame for the w
 不要凭空增加新的碎屑，不要制造第二次爆裂，不要让颗粒向上喷射或发光。
 最后一颗小红色调味颗粒从画面下沿落出。
 
-镜头在3秒内极缓慢后拉约4%，景深轻微加深，
+镜头在2秒内极缓慢后拉约4%，景深轻微加深，
 让左右两个断面同时清晰；黑色背景保持纯净稳定。
 声音：轻微、干燥的食物碎屑回落声，音量明显低于上一镜主咔嚓；无旁白。
 
@@ -597,17 +604,18 @@ seconds must contain the meaningful motion; do not keep a frozen frame for the w
 **输入方式**：单帧图生视频。
 
 - 首帧：`images/番茄味独立感官创意片/关键帧5-开杯取食.jpeg`
-- Gemini 生成：固定 10 秒
-- 成片采用：3.2 秒
+- Gemini 生成：3.2 秒（Prompt 首行锁定）
+- 成片采用：完整 3.2 秒
 
 ```text
+视频时长：3.2 秒（必须生成 3.2 秒，不要生成默认 10 秒）。
+A 3.2-second video.
 Use the uploaded image as a strict first frame and product/package reference.
-Create one continuous realistic package-opening food-commercial shot with no cuts, exactly 10 seconds long.
+Create one continuous realistic package-opening food-commercial shot with no cuts, exactly 3.2 seconds long.
 
-Timing: 0.0–0.8s stabilize the supplied starting pose; 0.8–3.2s complete the foil pull
-to a three-quarter-open position and make one front crisp tilt; 3.2–4.5s let the cup
-contents settle; 4.5–10.0s hold the open-cup state with subtle foil vibration and no new
-action. Do not leave the package-opening action out and do not freeze the whole 10 seconds.
+Timing: 0.0–0.35s stabilize the supplied starting pose; 0.35–2.55s complete the foil pull
+to a three-quarter-open position and make one front crisp tilt; 2.55–3.2s let the cup
+contents settle into the final open-cup state.
 
 保持当前16:9构图、暖奶油色影棚、杯子位置、杯身透视、包装版式、
 手部结构、银色铝箔、杯口和杯内薯条脆数量完全稳定。
@@ -637,17 +645,17 @@ action. Do not leave the package-opening action out and do not freeze the whole 
 **输入方式**：单帧图生视频。
 
 - 首帧：`images/番茄味独立感官创意片/关键帧6-产品落版V2.jpeg`
-- Gemini 生成：固定 10 秒
-- 成片采用：2.8 秒
+- Gemini 生成：2.8 秒（Prompt 首行锁定）
+- 成片采用：完整 2.8 秒
 
 ```text
+视频时长：2.8 秒（必须生成 2.8 秒，不要生成默认 10 秒）。
+A 2.8-second video.
 Use the uploaded image as a strict product hero frame.
-This is a restrained final packshot, not an action shot. Generate exactly 10 seconds.
+This is a restrained final packshot, not an action shot. Generate exactly 2.8 seconds.
 
 Timing: 0.0–1.3s make the 2% camera push-in and settle the existing crumbs; 1.3–2.8s
-enter the clean stable hero framing; 2.8–10.0s remain locked for a usable final hold,
-with only a barely perceptible exposure breathing. Never turn the packshot into a frozen
-blank frame before the product is fully readable.
+enter and hold the clean stable hero framing with only a barely perceptible exposure breathing.
 
 保持杯装包装、杯盖、中文、logo、产品名、口味信息、杯身比例、
 前景薯条脆、食物碎屑、调味颗粒、暖奶油色背景和所有接触阴影完全稳定。
