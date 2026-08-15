@@ -8,6 +8,9 @@
 |---|---|
 | [全景对照表](/tools/landscape) | 搞清楚有哪几类工具、各自负责什么 |
 | [选型决策树](/tools/decision-tree) | 按预算和交付形态，快速定下用哪套 |
+| [AI 视频增强 · 懂生成](/tools/video-enhancement) | 字节原文《为什么 AI 视频，需要“懂生成”的画质增强》全文存档 |
+| [AI 视频降本 · 三种做法](/tools/video-cost-reduction) | 字节原文《AI 视频降本的三种做法，只有一种不牺牲画质》全文存档 |
+| [AI 视频降本 · 钱花在刀刃上](/tools/video-budget-spending) | 字节原文《把 AI 视频的钱花在刀刃上，不是每一刀上》全文存档 |
 
 ## 关于内容准确性的说明
 

@@ -155,6 +155,9 @@ export default defineConfig({
             { text: '板块总览', link: '/tools/' },
             { text: '全景对照表', link: '/tools/landscape' },
             { text: '选型决策树', link: '/tools/decision-tree' },
+            { text: 'AI 视频增强 · 懂生成', link: '/tools/video-enhancement' },
+            { text: 'AI 视频降本 · 三种做法', link: '/tools/video-cost-reduction' },
+            { text: 'AI 视频降本 · 钱花在刀刃上', link: '/tools/video-budget-spending' },
           ],
         },
         {
