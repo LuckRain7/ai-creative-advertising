@@ -265,31 +265,335 @@ Constraints: generate no cup, packaging, text or logo; real package will be comp
 
 不要一次生成 20 秒，也不要让一个模型同时完成排油、旋转、断裂和调味。
 
-| 段 | 输入 | 生成动作 | 建议生成 | 成片采用 |
+::: warning Gemini 时长控制
+按 [Gemini · 控制视频时长](/tools/gemini-video-duration) 的规则，每个独立生成的分镜都必须在 Prompt **第一行**写中文时长约束，第二行再用英文重复一次。只在下方分镜表里填写“建议生成”不算完成时长控制。
+
+每条 Prompt 的内部时间轴必须从 `0.0s` 开始，并在该条生成总时长处结束。若当前模型只支持固定时长档位，选择不短于表中时长的最近档位，再按“成片采用”精剪；不要把整条 20 秒时间线当成单条生成时长。
+:::
+
+| 段 | 输入 | 生成动作 | 单次生成（Prompt 锁定） | 成片采用 |
 |---|---|---|---:|---:|
 | V1 | K00 | 产品骤然断裂，少量碎屑迎面飞出 | 3s × 4 | 1.6s |
 | V2 | K01 | 刀切落下，三根鲜薯条掉入前景 | 4s × 3 | 1.9s |
 | V3 | K02 | 上盖压紧、锁扣闭合，镜头短移到压力表 | 4s × 3 | 1.2s |
 | V4 | K03 | 细泡持续析出，水汽稳定移向顶部出口 | 5s × 4 | 2.3s |
 | V5 | K04 | 水汽凝结，一滴清水垂直落下 | 3s × 3 | 1.1s |
-| V6 | K05 + K06 | 油位先降至篮下，停 0.25s，料篮再加速旋转 | 5s × 4 | 1.8s |
+| V6 | K03 + K05 + K06 | 油位先降至篮下，停 0.25s，料篮再加速旋转 | 5s × 4 | 1.8s |
 | V7 | K07 | 断面由暗到亮，产品干净折断 | 4s × 4 | 2.2s |
 | V8 | K08 | 红色调味颗粒落附，多根成品交错落下 | 4s × 4 | 2.0s |
 | V9 | 客户开盖视频 | 不生成；精剪撕膜、露出、取食三个动作 | 实拍素材 | 2.7s |
-| V10 | K09 + 真实包装 | 只做背景轻推与碎屑落定，包装后期合成 | 4s × 3 | 3.2s |
+| V10 | K09 + 真实包装 | 默认不生成；静态合成后做 2% 后期推近。仅缺少自然微动时生成空背景 | 后期优先；备选 4s × 3 | 3.2s |
 
-### V6 动作 Prompt
+## 最终 Gemini 视频生成 Prompt
+
+以下版本按 [Gemini · 中文还是英文](/tools/gemini-prompt-language) 重新整理：中文只保留时长锁定和 review 摘要，实际生成正文使用结构化英文。每一条都可以独立提交，不能省略其内部的身份、物理与排除约束。
+
+::: warning 输入帧先校正
+- **V1**：K00 是断裂动作参考，不是合格首帧。单帧图生视频时，先补一张同款完整薯条脆作为首帧；支持参考图模式时，再把 K00 作为断面、碎屑和光线参考。
+- **V3**：从 K02 裁出上盖、锁扣、粗管路和压力表所在的近景再上传，避免模型在 4 秒内从设备全景硬变成特写。
+- **V5**：使用水滴仍附着在冷凝液出口、尚未脱落的帧作为首帧；K04 只作构图与结构参考。
+- **V6**：K03 是油位尚未下降的严格首帧，K05 只作排油完成的中间状态参考，K06 是严格尾帧；首尾帧模式上传 K03 与 K06。
+- **V7**：补一张与 K07 完全同款、尚未断裂的完整产品作为首帧，K07 作为严格尾帧。
+- **V10**：真实包装始终后期合成。默认直接使用 K09 静帧制作落版，不让模型生成包装或包装文字。
+:::
+
+核心动作全部安排在各镜“成片采用”的时间窗口内；生成总时长多出的部分只延续当前状态，作为选帧和剪辑余量，不再把主动作平均摊满整条素材。
+
+### V1 · 咔嚓钩子
+
+**中文意图**：0.15 秒静音后只断一次；浅金真实薯条脆、番茄红颗粒和少量食物碎屑直接抓注意力。
+
+**输入方式**：同款完整产品首帧；产品原图和 K00 作为身份、断面与光线参考。成片取生成结果前 1.6 秒。
 
 ```text
-Continue from the supplied first frame with strict equipment continuity.
-The edible oil level drains smoothly below the perforated product basket through the bottom outlet.
-Hold for a clear quarter-second after the basket is fully above the oil.
-Only then does the same basket rotate around its central vertical axle, slowly at first and then faster.
-The potato strips settle gently near the perforated outer wall without tumbling or breaking.
-A few realistic surface-oil droplets move radially through the perforations and fall below.
-Camera remains locked. No oil bath during spinning, flying food, water splash, powder,
-rotation reversal or impossible suspended droplets.
+视频时长：3 秒（必须生成 3 秒，不要生成默认 10 秒）。
+Duration: 3 seconds. Do not generate the default 10-second clip.
+
+Format: one continuous premium food-commercial macro shot, 16:9, center-safe for a 9:16 crop, no cuts.
+Reference control: preserve the exact thick rectangular shape, pale-gold color, dry matte potato surface,
+fine tomato-red seasoning and natural scale of the uploaded product. Show one original product, which may
+become exactly two halves after the snap, and no hands.
+
+Timing: 0.0–0.15s hold the intact crisp in near silence; 0.15–0.45s form one short central hairline
+crack and execute one clean brittle snap; 0.45–1.20s let the two halves separate by only a few
+centimeters while a restrained amount of dry golden food crumbs and a few red seasoning particles
+move toward camera in real high-speed motion; 1.20–1.60s reveal one irregular fracture face and
+decelerate the crumbs; 1.60–2.60s let the existing particles fall under gravity; 2.60–3.00s hold a stable tail frame.
+
+Camera: locked-off 100 mm macro camera, no zoom, no pan, no orbit, extremely shallow depth of field.
+Lighting: pure dark studio background; one warm hard backlight passes through irregular potato pores;
+a restrained tomato-red edge reflection appears only on the product rim. Natural contrast, subtle film grain.
+Physics: the two halves retain the original total length, thickness and color. Crumbs are dry food fragments,
+not an explosion. The product breaks once and never reconnects.
+Audio if supported: 0.15 seconds of near silence, then one close, dry, full-bodied crunch with a short crumb tail; no music, no voice.
+Exclude: extra product pieces, repeated breaking, healing, bending like rubber, product growth or shrinkage,
+regular honeycomb, bread or sponge texture, greasy shine, excessive debris, metallic particles, sparks,
+fireworks, smoke, text, logo, packaging, subtitles, watermark, camera cut.
 ```
+
+**验收**：`0.15–0.45s` 必须只出现一次断裂；两截长度之和不变，1.6 秒内已经形成可剪的完整“静音 → 咔嚓 → 断面”动作。
+
+### V2 · 原薯鲜切
+
+**中文意图**：湿润鲜薯切面匹配上一镜干燥断面；只完成最后一刀和三根粗条落下。
+
+**输入方式**：K01 作为严格产品、尺寸和机位参考。成片取生成结果前 1.9 秒。
+
+```text
+视频时长：4 秒（必须生成 4 秒，不要生成默认 10 秒）。
+Duration: 4 seconds. Do not generate the default 10-second clip.
+
+Format: one continuous realistic fresh-food macro shot, 16:9, center-safe for a 9:16 crop, no cuts.
+Reference control: preserve the peeled potato, pale-yellow wet cut surfaces, naturally imperfect edges
+and straight 8–9 mm square cross-sections shown in K01. This is raw potato, not cooked food.
+
+Timing: 0.0–0.15s establish the wet potato cut face; 0.15–0.70s one clean stainless blade completes
+one final downward cut; 0.70–1.55s the last three separated raw strips fall naturally into the foreground
+with realistic weight and slight variation; 1.55–1.90s the three strips make one soft contact and settle;
+1.90–3.50s preserve the settled composition with only residual moisture highlights; 3.50–4.00s hold a stable tail frame.
+
+Camera: locked-off 100 mm macro view matched to V1 product scale and angle; focus stays on the fresh cut surface.
+Lighting: clean warm-neutral side backlight revealing faint starch moisture; natural food-commercial contrast.
+Physics: the blade moves only once; the three strips remain straight and solid, fall downward under gravity,
+and do not duplicate, bend or change thickness. The cropped blade is driven from outside the frame and never floats.
+Audio if supported: one moist clean cutting sound followed by three soft raw-potato contacts; no voice, no music.
+Exclude: visible hands, extra knife strokes, potato skin, cooked fries, golden crust, seasoning, oil, steam,
+domestic kitchen clutter, duplicated strips, floating food, morphing, text, logo, packaging, watermark, camera cut.
+```
+
+**验收**：三根粗条必须在 1.9 秒内落定；切面是湿润生马铃薯，不能提前变成熟制浅金薯条。
+
+### V3 · 真空建立
+
+**中文意图**：用“上盖压紧 → 两个锁扣闭合 → 短移到压力表”在 1.2 秒内建立真空，不巡礼整台设备。
+
+**输入方式**：上传 K02 的上部近景裁切，裁切内同时保留上盖、两个主要锁扣、同一根粗管路和机械压力表。成片取生成结果前 1.2 秒。
+
+```text
+视频时长：4 秒（必须生成 4 秒，不要生成默认 10 秒）。
+Duration: 4 seconds. Do not generate the default 10-second clip.
+
+Format: one continuous fast-paced but physically credible industrial food-commercial shot, 16:9,
+center-safe for a 9:16 crop, no cuts.
+Reference control: preserve the exact SUS304 vessel geometry, lid, clamps, pipe routing, analog gauge,
+neutral factory setting and scale of the cropped K02 reference. Do not redesign or add equipment.
+
+Timing: 0.0–0.10s establish the upper vessel; 0.10–0.38s the heavy lid settles firmly onto its seal;
+0.38–0.68s two visible mechanical clamps close in sequence with two distinct metal clicks;
+0.68–1.05s the camera makes one short controlled lateral slide along the existing thick sanitary pipe
+to the analog pressure gauge; 1.05–1.20s the gauge needle begins one subtle smooth movement and holds;
+1.20–3.50s maintain the final gauge composition with restrained pump vibration; 3.50–4.00s hold a stable tail frame.
+
+Camera: one short 35 mm lateral slider move only; no push-in, orbit, whip pan or angle change.
+Lighting: neutral clean factory light with a restrained warm-gold reflection from the vessel; real metal response, no blue neon.
+Physics: the lid closes before the clamps; the clamps close before the gauge responds. All pipes stay rigid
+and connected. The gauge markings remain present but unreadable.
+Audio if supported: two precise metal clamp clicks followed by a low restrained vacuum-pump tone; no voice, no music.
+Exclude: equipment transformation, opening lid, disconnected or decorative pipes, digital display, readable numbers,
+dramatic needle swing, steam burst, sparks, sci-fi chamber, copied logo, text, labels, watermark, camera cut.
+```
+
+**验收**：成片窗口内必须完整看到三步顺序，设备结构不变，压力表不能像转速表一样剧烈摆动。
+
+### V4 · VF 真空低温油炸
+
+**中文意图**：食物占画面至少三分之二；细泡持续从薯条表面析出，水汽只向顶部出口移动。
+
+**输入方式**：K03 作为严格首帧，K02 作为设备身份参考。成片取生成结果前 2.3 秒。
+
+```text
+视频时长：5 秒（必须生成 5 秒，不要生成默认 10 秒）。
+Duration: 5 seconds. Do not generate the default 10-second clip.
+
+Format: one continuous realistic appetizing process cutaway, 16:9, center-safe for a 9:16 crop, no cuts.
+Reference control: preserve the exact vessel, perforated basket, thick potato-strip geometry and clear
+pale-gold edible oil shown in K03. Potato strips occupy at least two thirds of the frame throughout.
+
+Timing: 0.0–0.20s establish the submerged strips; 0.20–2.00s many fine, evenly distributed vapor bubbles
+continuously leave the potato surfaces while a restrained stream of water vapor moves upward toward the
+existing top outlet; 2.00–2.30s maintain the same controlled dehydration state as a clean edit handle;
+2.30–4.50s continue the identical fine-bubble action without increasing intensity; 4.50–5.00s hold a stable tail frame.
+
+Camera: stable 70 mm close view with a barely perceptible 2% push-in over five seconds; no other movement.
+Lighting: luminous warm-gold oil, natural pale potato color, neutral stainless-steel edge, subtle film grain.
+Physics: bubbles originate only on potato surfaces and rise upward; the oil remains clear and below violent
+atmospheric-frying intensity. Strips stay intact, submerged and naturally pale-gold.
+Audio if supported: dense fine bubbling blended with a low restrained vacuum tone; no voice, no music.
+Exclude: violent white foam, large boiling bubbles, calm soaking, dark-brown fries, floating oil film,
+product swelling or melting, water splash, steam cloud obscuring food, arrows, diagrams, text, logo,
+labels, watermark, camera cut.
+```
+
+**验收**：2.3 秒成片窗口内动作强度保持一致；不能从“细泡脱水”逐渐演变成常压油锅翻滚。
+
+### V5 · 真空脱水
+
+**中文意图**：只看一滴透明冷凝水形成并垂直落下，用于匹配切到下一镜油位下降。
+
+**输入方式**：使用 K04 构图，但首帧必须选在水滴仍附着于冷凝液出口、尚未脱落的状态。成片取生成结果前 1.1 秒。
+
+```text
+视频时长：3 秒（必须生成 3 秒，不要生成默认 10 秒）。
+Duration: 3 seconds. Do not generate the default 10-second clip.
+
+Format: one continuous realistic industrial macro detail, 16:9, center-safe for a 9:16 crop, no cuts.
+Reference control: preserve the compact stainless condenser, condensate outlet, receiving vessel and
+connected vacuum line from K04 and K02. Water is clear and visually separate from edible oil.
+
+Timing: 0.0–0.15s establish one small clear droplet attached to the condensate outlet; 0.15–0.62s the
+same droplet slowly grows from condensation; 0.62–0.88s it detaches once and falls vertically through
+the center of frame; 0.88–1.10s it exits the lower frame edge on the match-cut axis; 1.10–2.50s hold the
+unchanged condenser with only subtle condensation; 2.50–3.00s preserve a stable tail frame.
+
+Camera: locked-off 100 mm macro camera, focus fixed on the droplet path, no rack focus or camera movement.
+Lighting: neutral stainless steel, one clean highlight on the transparent droplet, restrained warm reflection.
+Physics: only one droplet detaches; it falls straight down under gravity. No new droplet falls during the shot.
+Audio if supported: one clear small water drop with a restrained vacuum background tone; no voice, no music.
+Exclude: frying oil at the outlet, yellow liquid, laboratory glassware, multiple droplets, splash, steam cloud,
+arrows, diagrams, readable labels, text, logo, watermark, camera cut.
+```
+
+**验收**：只能落一滴，轨迹垂直且在 `1.10s` 前离开画面，便于直接匹配下一镜的油位下降。
+
+### V6 · 排油后离心脱油
+
+**中文意图**：物理顺序不可交换：先排油到料篮下方，明确停 0.25 秒，再启动同一个料篮旋转。
+
+**输入方式**：K03 严格首帧，K06 严格尾帧，K05 只作排油完成的中间状态参考。成片取生成结果前 1.8 秒。
+
+```text
+视频时长：5 秒（必须生成 5 秒，不要生成默认 10 秒）。
+Duration: 5 seconds. Do not generate the default 10-second clip.
+
+Format: one continuous engineering-plausible process shot, 16:9, center-safe for a 9:16 crop, no cuts.
+Use the supplied K03 first frame and K06 last frame as strict visual, equipment and product constraints.
+Use K05 only as the required intermediate oil-drained state; do not begin from K05.
+Preserve the exact vessel wall, central vertical axle, perforated basket, oil color, strip count and camera angle.
+
+Timing: 0.0–0.12s establish K03; 0.12–0.72s the edible oil level drains smoothly through the bottom outlet
+until it is clearly below the basket; 0.72–0.97s hold the fully drained state for a visible quarter-second;
+0.97–1.62s only then accelerate the same basket around its central vertical axle; 1.62–1.80s reach the K06
+steady-spin state; 1.80–4.50s continue at one believable steady speed with only a few small surface-oil
+droplets passing through the perforations; 4.50–5.00s preserve a stable rotating edit handle.
+
+Camera: completely locked 70 mm close cutaway; no zoom, pan, orbit, reframing or focus change.
+Physics: oil drainage finishes before rotation starts. Potato strips settle gently near the outer basket wall
+without tumbling, breaking, flying or changing identity. Motion blur appears on the basket only; strips remain recognizable.
+Audio if supported: short drainage sound, a clear quarter-second pause, then one restrained mechanical rise
+settling into a steady hum; no voice, no music.
+Exclude: spinning while submerged, rising oil level, reverse rotation, flying food, water splash, powder,
+oversized suspended droplets, equipment morphing, product duplication, text, labels, logo, watermark, camera cut.
+```
+
+**验收**：在 1.8 秒成片窗口内，`排油 → 0.25s 停顿 → 加速旋转` 三步必须全部成立；任何“边排油边旋转”的结果直接淘汰。
+
+### V7 · 疏松断面与第二声咔嚓
+
+**中文意图**：先用逆光看清天然不规则孔隙，再断一次；比开头更慢、更清楚，负责证明“脆”。
+
+**输入方式**：同款完整产品严格首帧，K07 严格尾帧；两帧焦段、尺度、方向和背景必须一致。成片取生成结果前 2.2 秒。
+
+```text
+视频时长：4 秒（必须生成 4 秒，不要生成默认 10 秒）。
+Duration: 4 seconds. Do not generate the default 10-second clip.
+
+Format: one continuous premium macro food shot, 16:9, center-safe for a 9:16 crop, no cuts.
+Use the supplied intact first frame and K07 broken end frame as strict identity and composition constraints.
+Preserve the exact thick rectangular product, pale-gold dry surface, fine tomato-red seasoning, scale and orientation.
+
+Timing: 0.0–0.30s establish the intact product against the dark background; 0.30–1.25s a warm hard
+side backlight gradually reveals a short natural central fissure; 1.25–1.55s execute one clean brittle snap;
+1.55–1.95s the two halves separate slightly and turn only enough for one fracture plane to face camera while
+a few dry crumbs move outward; 1.95–2.20s the irregular potato-cell pores remain sharply visible and existing
+crumbs begin to fall; 2.20–3.60s settle precisely into the K07 end frame; 3.60–4.00s hold stable.
+
+Camera: stable 100 mm macro camera with a restrained 3% push-in over four seconds; focus remains on
+the same fracture plane. No orbit or angle change.
+Lighting: hard warm side backlight grazing varied pores and natural cracks; soft warm fill preserves real food color.
+Physics: the product breaks once. The two halves retain the original total length and thickness and never reconnect.
+The fracture is irregular potato tissue, with varied void sizes and thin natural cell walls.
+Audio if supported: at approximately 1.50s, one close dry crunch, fuller than V1, followed by a restrained
+food-crumb tail; no voice, no music.
+Exclude: repeated snap, healing, third piece, product growth or shrinkage, regular honeycomb, hexagonal holes,
+sponge, bread crumb, extruded-snack texture, excessive explosion, metal or glass debris, grease, smoke,
+text, logo, packaging, watermark, camera cut.
+```
+
+**验收**：断裂只发生一次，孔洞必须大小不一；任何规则蜂窝、面包或海绵断面都不能进入剪辑。
+
+### V8 · 番茄风味落附
+
+**中文意图**：由金色碎屑自然转入番茄红颗粒；调味粉轻落附着，多根成品随后交错下落形成红金节奏。
+
+**输入方式**：K08 作为严格产品、颗粒和色彩参考。成片取生成结果前 2.0 秒。
+
+```text
+视频时长：4 秒（必须生成 4 秒，不要生成默认 10 秒）。
+Duration: 4 seconds. Do not generate the default 10-second clip.
+
+Format: one continuous bright premium food-commercial close-up, 16:9, center-safe for a 9:16 crop, no cuts.
+Reference control: preserve exactly three thick pale-gold potato crisps, their dry matte surface, irregular
+real-potato texture and fine tomato-red food-seasoning particles from K08. Keep the red-gold diagonal composition.
+
+Timing: 0.0–0.15s establish the lead crisp; 0.15–1.05s fine tomato-red seasoning falls gently under gravity,
+makes one tiny natural bounce and settles into surface crevices; 1.05–1.72s the other finished crisps cross
+the frame diagonally and fall with two restrained dry contacts; 1.72–2.00s all existing particles and products
+decelerate into a clean red-gold composition; 2.00–3.50s allow only residual particles to settle;
+3.50–4.00s hold a stable tail frame.
+
+Camera: stable 85 mm close-up with one subtle 3% lateral tracking move following the lead crisp; no other movement.
+Lighting: bright soft top light, narrow warm-gold rim light and restrained tomato-red reflection on a warm cream background.
+Physics: seasoning moves downward, stays dry and adheres only in small natural crevices. Products remain rigid,
+thick, pale-gold and recognizable; they do not collide violently or change shape.
+Audio if supported: fine dry seasoning fall followed by two light crisp contacts; no voice, no music.
+Exclude: tomato sauce, juice, wet coating, red smoke, powder blast, upward particles, sparks, metallic powder,
+abstract energy, oily shine, product duplication or bending, text, logo, packaging, watermark, camera cut.
+```
+
+**验收**：2 秒内完成“颗粒落附 → 多根成品下落 → 稳定构图”；颗粒必须服从重力，不能变成红色能量特效。
+
+### V9 · 真实开杯取食
+
+V9 不提交 Gemini。直接从客户视频中精剪 2.7 秒，按以下动作点重排：
+
+| 成片相对时码 | 动作 |
+|---:|---|
+| 0.00–0.80s | 铝箔从已起边状态撕开，杯口露出 |
+| 0.80–1.55s | 杯内薯条脆完成一次轻微自然碰撞并稳定 |
+| 1.55–2.40s | 一根真实产品被拿起并靠近镜头 |
+| 2.40–2.70s | 保留一次近距离轻咬声或干净动作尾点 |
+
+包装正面始终使用真实素材；不做生成式补帧去“修复”中文、logo、产品名或口味名。
+
+### V10 · 包装落版
+
+默认方案不是 Gemini 生成：K09 作为静态背景，真实包装后期合成；整张合成画面前 1.2 秒做 2% 匀速推近，`1.2–1.7s` 缓慢停止，最后 1.5 秒完全锁定。这样包装、字幕和接触阴影不会跨帧漂移。
+
+只有 K09 的静态背景明显缺少真实微动时，才生成以下 **空背景 plate**；模型生成结果中仍然不得出现包装，最终取前 3.2 秒：
+
+```text
+视频时长：4 秒（必须生成 4 秒，不要生成默认 10 秒）。
+Duration: 4 seconds. Do not generate the default 10-second clip.
+
+Format: one continuous restrained empty product-hero background plate, 16:9, center-safe for a 9:16 crop, no cuts.
+Use K09 as a strict first frame. Preserve the warm cream studio surface, the reserved center-right package area,
+the clear left-side copy space, three foreground tomato-seasoned crisps and every existing contact shadow.
+
+Timing: 0.0–1.20s make one barely perceptible 2% forward camera push while two or three existing tiny crumbs
+settle naturally; 1.20–1.70s ease the camera to a complete stop; 1.70–3.20s hold the entire hero composition
+perfectly still for brand recognition; 3.20–4.00s continue the identical locked frame as an edit handle.
+
+Camera: front-facing 50 mm product camera; one 2% push only, then completely locked. No pan, tilt, orbit or focus change.
+Lighting: soft frontal studio light, warm-gold rim light, restrained tomato-red background reflection,
+natural unchanged contact shadows, no exposure breathing during the final hold.
+Physics: only existing tiny crumbs may settle. The three foreground crisps do not move, bend, duplicate or change color.
+Audio if supported: one very light dry crumb settling sound, then silence; no voice, no music.
+Exclude: cup, package, label, text, logo, new product, moving crisps, new crumbs, light sweep, glowing ring,
+smoke, fire, background morphing, changing shadows, exposure flicker, watermark, camera cut.
+```
+
+**后期**：真实包装、品牌名、产品名和落版主张统一在合成阶段加入；最后 1.5 秒所有图层完全锁定。
+第三声短“咔嚓”在本镜相对时码 `0.20s` 由后期声音设计加入，不依赖空背景生成音频。
 
 ## 声音与音乐
 
