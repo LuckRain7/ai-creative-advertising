@@ -132,16 +132,32 @@ export default defineConfig({
               collapsed: false,
               items: [
                 {
-                  text: '03g · 声纹测试互动感官片',
-                  link: '/lab/shuangyu-fries/03g-honey-butter-soundprint-test',
+                  text: '项目总览',
+                  link: '/lab/shuangyu-fries/honey-butter/',
                 },
                 {
-                  text: '03e · 原始导演执行稿',
-                  link: '/lab/shuangyu-fries/03e-honey-butter-sensory-film',
+                  text: '01 · 创意',
+                  link: '/lab/shuangyu-fries/honey-butter/01-creative',
                 },
                 {
-                  text: '04i · 旧方向无包装镜头 v2',
-                  link: '/lab/shuangyu-fries/04i-honey-butter-v2-optimization',
+                  text: '02 · 关键帧',
+                  link: '/lab/shuangyu-fries/honey-butter/02-keyframes',
+                },
+                {
+                  text: '03 · Demo 预览',
+                  link: '/lab/shuangyu-fries/honey-butter/03-demo-preview',
+                },
+                {
+                  text: '04 · 分镜',
+                  link: '/lab/shuangyu-fries/honey-butter/04-storyboard',
+                },
+                {
+                  text: '05 · 声音与剪辑',
+                  link: '/lab/shuangyu-fries/honey-butter/05-sound-edit',
+                },
+                {
+                  text: '06 · 发布与验收',
+                  link: '/lab/shuangyu-fries/honey-butter/06-release-review',
                 },
               ],
             },
@@ -172,8 +188,16 @@ export default defineConfig({
                   link: '/lab/shuangyu-fries/04e-gemini-preview-v1',
                 },
                 {
+                  text: '03e · 蜂蜜黄油原始执行稿',
+                  link: '/lab/shuangyu-fries/03e-honey-butter-sensory-film',
+                },
+                {
                   text: '04g · 蜂蜜黄油第一轮关键帧',
                   link: '/lab/shuangyu-fries/04g-honey-butter-keyframes',
+                },
+                {
+                  text: '04i · 蜂蜜黄油旧方向 v2.1',
+                  link: '/lab/shuangyu-fries/04i-honey-butter-v2-optimization',
                 },
               ],
             },

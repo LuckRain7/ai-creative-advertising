@@ -64,9 +64,13 @@
 
 | 文件 | 状态 |
 |---|---|
-| [03g · 声纹测试互动感官片](./03g-honey-butter-soundprint-test) | **当前推荐方向** · 12 秒 / 9:16 / A-B-C 声音选择题 |
-| [03e · 原始导演执行稿](./03e-honey-butter-sensory-film) | 历史方向 · 20 秒 / 6 镜头 / 传统 ASMR 执行稿 |
-| [04i · 无包装镜头 v2](./04i-honey-butter-v2-optimization) | 旧方向优化 · 第一轮实图复盘 + 产品母版纠偏 + 重跑 Prompt |
+| [项目总览](./honey-butter/) | **当前推荐方向** · 12 秒 / 9:16 / A-B-C 声音选择题 |
+| [01 · 创意](./honey-butter/01-creative) | 命题、互动机制与创意边界 |
+| [02 · 关键帧](./honey-butter/02-keyframes) | P0 产品母版 / 10 张关键帧 / 首尾状态 |
+| [03 · Demo 预览](./honey-butter/03-demo-preview) | 四段最小动态 / 12 秒方向预览 / 反馈记录 |
+| [04 · 分镜](./honey-butter/04-storyboard) | 逐镜图生视频、后期任务与正式时间线 |
+| [05 · 声音与剪辑](./honey-butter/05-sound-edit) | AI 音效、remix、字幕与剪辑节拍 |
+| [06 · 发布与验收](./honey-butter/06-release-review) | A/B 测试、合规与总验收 |
 
 ### 番茄味独立感官创意片
 
@@ -84,7 +88,9 @@
 | [04a · A 片即梦执行表](./04a-jimeng-v1) | v1 |
 | [04b · A 片 Gemini 执行表](./04b-gemini-v1) | v1 |
 | [04e · A/B 片 20 秒预览](./04e-gemini-preview-v1) | 方向预览，不作成片底料 |
+| [03e · 蜂蜜黄油原始导演执行稿](./03e-honey-butter-sensory-film) | 历史方向 · 20 秒传统 ASMR 执行稿 |
 | [04g · 蜂蜜黄油第一轮关键帧](./04g-honey-butter-keyframes) | 已被 04i 取代 |
+| [04i · 蜂蜜黄油无包装镜头 v2.1](./04i-honey-butter-v2-optimization) | 旧方向技术优化；产品形态资产可复用 |
 | 06 · 复盘 | 交付后补写 |
 
 ::: warning 分镜是在创意核心未确认的情况下写的

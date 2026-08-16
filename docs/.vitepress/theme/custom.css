@@ -34,12 +34,20 @@
 }
 
 .vp-doc table {
-  display: table;
+  display: block;
   width: 100%;
+  overflow-x: auto;
 }
 
 .vp-doc .table-wrapper {
   overflow-x: auto;
+}
+
+@media (max-width: 767px) {
+  .vp-doc th,
+  .vp-doc td {
+    min-width: 7rem;
+  }
 }
 
 /* ---- Prompt 卡片：正文里成段的可复制 Prompt 用引用块承载，加个视觉锚点 ---- */
