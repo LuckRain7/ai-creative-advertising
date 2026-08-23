@@ -152,6 +152,10 @@ export default defineConfig({
                   link: '/lab/shuangyu-fries/honey-butter/04-storyboard',
                 },
                 {
+                  text: '04b · 20 秒加长版',
+                  link: '/lab/shuangyu-fries/honey-butter/04b-20s-storyboard',
+                },
+                {
                   text: '05 · 声音与剪辑',
                   link: '/lab/shuangyu-fries/honey-butter/05-sound-edit',
                 },
@@ -166,11 +170,15 @@ export default defineConfig({
               collapsed: false,
               items: [
                 {
-                  text: '03f · 原始导演执行稿',
+                  text: '01 · 导演执行稿',
                   link: '/lab/shuangyu-fries/03f-tomato-sensory-film',
                 },
                 {
-                  text: '04j · v2 成片优化',
+                  text: '02 · 关键帧',
+                  link: '/lab/shuangyu-fries/04k-tomato-v2-keyframes-v3',
+                },
+                {
+                  text: '03 · 分镜',
                   link: '/lab/shuangyu-fries/04j-tomato-v2-optimization',
                 },
               ],
@@ -285,6 +293,7 @@ export default defineConfig({
             { text: '排除项写法', link: '/tools/gemini-negative-tokens' },
             { text: '参考图去风格', link: '/tools/gemini-reference-image' },
             { text: '失败诊断与去廉价感', link: '/tools/gemini-fail-diagnosis' },
+            { text: '踩坑速查地图', link: '/tools/gemini-pitfalls' },
             { text: '中式食品词翻译', link: '/tools/gemini-food-term-translation' },
             { text: '首帧与首尾帧', link: '/tools/gemini-first-last-frame' },
             { text: '声音 / 旁白 / ASMR', link: '/tools/gemini-sound-asmr' },

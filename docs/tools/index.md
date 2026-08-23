@@ -28,6 +28,7 @@
 | [排除项写法](/tools/gemini-negative-tokens) | Gemini Web 问答存档《排除项怎么写才生效》，识别率分级表 + 四模块清单 + 黄金书写顺序 |
 | [参考图去风格](/tools/gemini-reference-image) | Gemini Web 问答存档《参考图：锁构图不锁风格》，3 种中性参考图 + 污染风险对照表 + 去风格化 3 步 |
 | [失败诊断与去廉价感](/tools/gemini-fail-diagnosis) | Gemini Web 问答存档《失败诊断与去廉价感》，随机性 vs Prompt 对照实验 + 五步诊断顺序 + 廉价感四因素救法 |
+| [踩坑速查地图](/tools/gemini-pitfalls) | 行业社区反馈整理，按「翻车表现」反查解法 + 平台/账号/审核边界 + 三条总是成立的工作方式 |
 | [中式食品词翻译](/tools/gemini-food-term-translation) | Gemini Web 问答存档《中式食品词的画面翻译》，锅气/酥脆/金黄/挂汁/焦香 5 词英文对照表 + 实战 Prompt |
 | [首帧与首尾帧](/tools/gemini-first-last-frame) | Gemini Web 问答存档《首帧与首尾帧锁定》，I2V vs T2V 对比 + 首尾帧三种用法 + 乱抖发糊 5 约束 |
 | [声音 / 旁白 / ASMR](/tools/gemini-sound-asmr) | Gemini Web 问答存档《声音/旁白/ASMR》，音频能力边界 + 口播对齐四步法 + ASMR 精确描述模板 |

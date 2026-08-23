@@ -76,8 +76,9 @@
 
 | 文件 | 状态 |
 |---|---|
-| [03f · 原始导演执行稿](./03f-tomato-sensory-film) | v1 · 20 秒 / 6 镜头 / 16:9 番茄口味 ASMR 执行稿 |
-| [04j · v2 成片优化](./04j-tomato-v2-optimization) | 第一轮视频复盘 · 15 秒 / 6 镜头 / 16:9 完整重做 Prompt |
+| [01 · 导演执行稿](./03f-tomato-sensory-film) | v1 · 20 秒 / 6 镜头 / 16:9 番茄口味 ASMR 执行稿 |
+| [02 · 关键帧](./04k-tomato-v2-keyframes-v3) | **当前关键帧执行稿** · P0 V3 外观母版 / 9 张关键帧 / 中英对照 Prompt |
+| [03 · 分镜](./04j-tomato-v2-optimization) | 第一轮视频复盘 · 15 秒 / 6 镜头 / 16:9 完整重做 Prompt |
 
 ### 历史版本与跨片预览
 

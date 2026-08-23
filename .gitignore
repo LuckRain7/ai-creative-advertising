@@ -6,3 +6,4 @@ docs/.vitepress/cache/
 
 # 原始物料备份，不入库
 images/
+output/
